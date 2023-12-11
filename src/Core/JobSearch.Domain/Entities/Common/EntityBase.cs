@@ -4,7 +4,7 @@ namespace JobSearch.Domain.Entities.Common;
 
 public abstract class EntityBase : IEntity
 {
-    public Guid Id { get; } = Guid.NewGuid();
+    public Guid Id { get; set; } = Guid.NewGuid();
 
     public DateTime CreatedDate { get; private init; } = DateTime.Now;
     public string CreatedBy { get; private init; } = "postgres";

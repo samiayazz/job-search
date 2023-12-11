@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="EfCoreDialogsState">
+    <option name="keyValueStorage">
+      <map>
+        <entry key="Common:64dee7e0-cfd1-4839-9ff2-932a1bc4386e:dbContext" value="JobSearch.Persistence.Contexts.JobSearchDbContext" />
+        <entry key="Common:buildConfiguration" value="Debug" />
+        <entry key="Common:enableDiagnosticLogging" value="false" />
+        <entry key="Common:noBuild" value="false" />
+        <entry key="Common:outputFolder" value="Migrations" />
+        <entry key="Common:useDefaultConnection" value="true" />
+      </map>
+    </option>
+  </component>
+</project>
