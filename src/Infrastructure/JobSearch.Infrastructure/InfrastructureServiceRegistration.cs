@@ -8,7 +8,7 @@ public static class InfrastructureServiceRegistration
 {
     public static IServiceCollection ConfigureInfrastructureServices(this IServiceCollection services)
     {
-        //services.AddSingleton<IUserService, IdentityUserService>();
+        services.AddScoped<IUserService, IdentityUserService>();
 
         return services;
     }

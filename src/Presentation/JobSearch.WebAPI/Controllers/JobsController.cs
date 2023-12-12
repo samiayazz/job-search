@@ -12,7 +12,7 @@ public class JobsController : ControllerBase
     public JobsController(IJobRepository repository)
         => _repository = repository;
 
-    [HttpGet("/[action]", Name = "JobsGetAll")]
+    [HttpGet("[action]", Name = "JobsGetAll")]
     public IActionResult GetAll()
     {
         return Ok(_repository.GetAll());

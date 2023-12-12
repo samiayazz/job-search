@@ -7,15 +7,15 @@ namespace JobSearch.WebAPI.Controllers
     [ApiController]
     public class UsersController : ControllerBase
     {
-        /*private readonly IUserService _userService;
+        private readonly IUserService _userService;
 
         public UsersController(IUserService userService)
             => _userService = userService;
 
-        [HttpGet("/[action]", Name = "UsersGetAll")]
+        [HttpGet("[action]", Name = "UsersGetAll")]
         public IActionResult GetAll()
         {
             return Ok(_userService.GetAllUsers());
-        }*/
+        }
     }
 }
