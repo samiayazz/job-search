@@ -1,11 +1,12 @@
 ﻿using System.Linq.Expressions;
 using JobSearch.Application.Contracts.Domain;
+using Microsoft.VisualBasic.CompilerServices;
 
 namespace JobSearch.Application.Contracts.Persistence.Repositories;
 
 public interface IRepository<TEntity, TKey>
     where TEntity : class, IEntity, new()
-    where TKey : class, new()
+    where TKey : struct
 {
     public ICollection<TEntity> GetAll(Expression<Func<TEntity, bool>> predicate = null);
     public TEntity GetSingle(Expression<Func<TEntity, bool>> predicate);
@@ -17,4 +18,5 @@ public interface IRepository<TEntity, TKey>
     public void Remove(TEntity entity);
     public void RemoveRange(ICollection<TEntity> entities);
     public void RemoveById(TKey id);
+    public long Count();
 }

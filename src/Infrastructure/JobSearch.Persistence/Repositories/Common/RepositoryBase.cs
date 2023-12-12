@@ -9,14 +9,15 @@ namespace JobSearch.Persistence.Repositories.Common;
 
 public abstract class RepositoryBase<TEntity, TKey> : IRepository<TEntity, TKey>
     where TEntity : class, IEntity, new()
-    where TKey : class, new()
+    where TKey : struct
 {
-    private readonly JobSearchDbContext _dbContext;
-    private readonly DbSet<TEntity> _table;
+    protected readonly JobSearchDbContext _dbContext;
+    protected readonly DbSet<TEntity> _table;
 
     public RepositoryBase(JobSearchDbContext dbContext)
     {
         _dbContext = dbContext;
+        _table = _dbContext.Set<TEntity>();
     }
 
     public ICollection<TEntity> GetAll(Expression<Func<TEntity, bool>> predicate = null)
@@ -74,4 +75,7 @@ public abstract class RepositoryBase<TEntity, TKey> : IRepository<TEntity, TKey>
     {
         throw new NotImplementedException();
     }
+
+    public long Count()
+        => _table.Count();
 }

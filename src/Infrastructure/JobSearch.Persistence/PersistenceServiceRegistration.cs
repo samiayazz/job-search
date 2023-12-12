@@ -1,6 +1,7 @@
-﻿using JobSearch.Domain.Entities.Identity;
+﻿using JobSearch.Application.Contracts.Persistence.Repositories;
+using JobSearch.Domain.Entities.Identity;
 using JobSearch.Persistence.Contexts;
-using Microsoft.AspNetCore.Identity;
+using JobSearch.Persistence.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -17,6 +18,8 @@ public static class PersistenceServiceRegistration
 
         services.AddIdentity<AppUser, AppRole>()
             .AddEntityFrameworkStores<JobSearchDbContext>();
+
+        services.AddSingleton<IJobRepository, JobRepository>();
 
         return services;
     }
