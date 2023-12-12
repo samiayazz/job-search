@@ -6,8 +6,8 @@ namespace JobSearch.WebAPI.Controllers;
 [ApiController]
 public class JobsController : ControllerBase
 {
-    [HttpGet("/[action]", Name = "GetAllJobs")]
-    public IActionResult Get()
+    [HttpGet("/[action]", Name = "JobsGetAll")]
+    public IActionResult GetAll()
     {
         return Ok();
     }
