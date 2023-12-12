@@ -19,7 +19,7 @@ public static class PersistenceServiceRegistration
         services.AddIdentity<AppUser, AppRole>()
             .AddEntityFrameworkStores<JobSearchDbContext>();
 
-        services.AddSingleton<IJobRepository, JobRepository>();
+        services.AddScoped<IJobRepository, JobRepository>();
 
         return services;
     }
