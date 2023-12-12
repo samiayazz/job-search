@@ -6,11 +6,11 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace JobSearch.Persistence;
+namespace JobSearch.Persistence.Extensions.WebAppBuilder;
 
 public static class PersistenceServiceRegistration
 {
-    public static IServiceCollection ConfigurePersistenceServices(this IServiceCollection services,
+    public static void RegisterPersistenceServices(this IServiceCollection services,
         IConfiguration config)
     {
         services.AddDbContext<JobSearchDbContext>(options
@@ -20,7 +20,5 @@ public static class PersistenceServiceRegistration
             .AddEntityFrameworkStores<JobSearchDbContext>();
 
         services.AddScoped<IJobRepository, JobRepository>();
-
-        return services;
     }
 }

@@ -2,14 +2,12 @@
 using JobSearch.Infrastructure.Services.User;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace JobSearch.Infrastructure;
+namespace JobSearch.Infrastructure.Extensions.WebAppBuilder;
 
-public static class InfrastructureServiceRegistration
+public static class ConfigureInfrastructureServicesExtension
 {
-    public static IServiceCollection ConfigureInfrastructureServices(this IServiceCollection services)
+    public static void RegisterInfrastructureServices(this IServiceCollection services)
     {
         services.AddScoped<IUserService, IdentityUserService>();
-
-        return services;
     }
 }
