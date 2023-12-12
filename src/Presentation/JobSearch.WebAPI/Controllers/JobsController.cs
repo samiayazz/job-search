@@ -1,4 +1,5 @@
 ﻿using JobSearch.Application.Contracts.Persistence.Repositories;
+using JobSearch.Application.Exceptions;
 using Microsoft.AspNetCore.Mvc;
 
 namespace JobSearch.WebAPI.Controllers;
@@ -15,6 +16,7 @@ public class JobsController : ControllerBase
     [HttpGet("[action]", Name = "JobsGetAll")]
     public IActionResult GetAll()
     {
-        return Ok(_repository.GetAll());
+        throw new CustomException();
+        //return Ok(_repository.GetAll());
     }
 }

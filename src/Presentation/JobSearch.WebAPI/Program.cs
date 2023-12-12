@@ -32,6 +32,6 @@ app.UseAuthServices();
 
 app.MapControllers();
 
-app.UseCustomExceptionHandler();
+app.UseGlobalExceptionHandler();
 
 app.Run();
