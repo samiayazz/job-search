@@ -6,7 +6,7 @@ namespace JobSearch.Infrastructure.Extensions.WebAppBuilder;
 
 public static class ConfigureInfrastructureServicesExtension
 {
-    public static void RegisterInfrastructureServices(this IServiceCollection services)
+    public static void AddInfrastructureServices(this IServiceCollection services)
     {
         services.AddScoped<IUserService, IdentityUserService>();
     }

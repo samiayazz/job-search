@@ -8,9 +8,9 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace JobSearch.Persistence.Extensions.WebAppBuilder;
 
-public static class PersistenceServiceRegistration
+public static class ConfigurePersistenceServicesExtension
 {
-    public static void RegisterPersistenceServices(this IServiceCollection services,
+    public static void AddPersistenceServices(this IServiceCollection services,
         IConfiguration config)
     {
         services.AddDbContext<JobSearchDbContext>(options

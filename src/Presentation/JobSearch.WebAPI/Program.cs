@@ -1,8 +1,6 @@
-using System.Text;
-using JobSearch.Infrastructure;
-using JobSearch.Persistence;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.IdentityModel.Tokens;
+using JobSearch.Infrastructure.Extensions.WebAppBuilder;
+using JobSearch.Persistence.Extensions.WebAppBuilder;
+using JobSearch.WebAPI.Extensions.WebAppBuilder;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -14,32 +12,10 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddAuthentication(options =>
-{
-    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-    options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
-}).AddJwtBearer(options =>
-{
-    options.TokenValidationParameters = new TokenValidationParameters
-    {
-        ValidateIssuer = true,
-        ValidIssuer = builder.Configuration["JwtToken:Issuer"],
+builder.Services.AddPersistenceServices(builder.Configuration);
+builder.Services.AddInfrastructureServices();
 
-        ValidateAudience = true,
-        ValidAudience = builder.Configuration["JwtToken:Audience"],
-
-        ValidateIssuerSigningKey = true,
-        IssuerSigningKey =
-            new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["JwtToken:SecurityKey"])),
-
-        ValidateLifetime = true
-    };
-});
-builder.Services.AddAuthorization();
-
-builder.Services.ConfigurePersistenceServices(builder.Configuration);
-builder.Services.ConfigureInfrastructureServices();
+builder.Services.AddAuthServices(builder.Configuration);
 
 var app = builder.Build();
 
@@ -52,9 +28,10 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-app.UseAuthentication();
-app.UseAuthorization();
+app.UseAuthServices();
 
 app.MapControllers();
+
+app.UseCustomExceptionHandler();
 
 app.Run();

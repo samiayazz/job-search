@@ -10,4 +10,8 @@
       <ProjectReference Include="..\JobSearch.Domain\JobSearch.Domain.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="Exceptions\" />
+    </ItemGroup>
+
 </Project>
