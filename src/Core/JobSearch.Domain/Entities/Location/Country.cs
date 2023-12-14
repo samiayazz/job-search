@@ -5,4 +5,5 @@ namespace JobSearch.Domain.Entities.Location;
 public class Country : EntityBase
 {
     public string Name { get; set; }
+    public ICollection<Province> Provinces { get; set; }
 }
