@@ -1,5 +1,6 @@
 ﻿using JobSearch.Application.Contracts.Persistence.Repositories;
 using JobSearch.Domain.Entities;
+using JobSearch.Domain.Entities.Job;
 using JobSearch.Persistence.Contexts;
 using JobSearch.Persistence.Repositories.Common;
 

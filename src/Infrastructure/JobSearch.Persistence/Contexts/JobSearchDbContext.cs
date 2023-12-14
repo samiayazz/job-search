@@ -1,5 +1,6 @@
 ﻿using JobSearch.Domain.Entities;
 using JobSearch.Domain.Entities.Identity;
+using JobSearch.Domain.Entities.Job;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
