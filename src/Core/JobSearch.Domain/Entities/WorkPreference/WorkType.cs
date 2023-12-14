@@ -1,6 +1,6 @@
 ﻿using JobSearch.Domain.Entities.Common;
 
-namespace JobSearch.Domain.Entities.WorkType;
+namespace JobSearch.Domain.Entities.WorkPreference;
 
 public class WorkType : EntityBase
 {

@@ -1,6 +1,6 @@
 ﻿using JobSearch.Domain.Entities.Common;
 
-namespace JobSearch.Domain.Entities.Address;
+namespace JobSearch.Domain.Entities.Location;
 
 public class Province : EntityBase
 {

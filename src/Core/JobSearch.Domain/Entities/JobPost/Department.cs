@@ -1,6 +1,6 @@
 ﻿using JobSearch.Domain.Entities.Common;
 
-namespace JobSearch.Domain.Entities.Job;
+namespace JobSearch.Domain.Entities.JobPost;
 
 public class Department : EntityBase
 {

@@ -1,5 +1,5 @@
 ﻿using JobSearch.Domain.Entities;
-using JobSearch.Domain.Entities.Job;
+using JobSearch.Domain.Entities.JobPost;
 
 namespace JobSearch.Application.Contracts.Persistence.Repositories;
 
