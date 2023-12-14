@@ -13,12 +13,12 @@ public abstract class ModifiableEntityBase : EntityBase
     public AppUser CreatedBy { get; set; }
 
     public DateTime? UpdatedDate { get; set; } = null;
-    public Guid? UpdatedById { get; set; } = null;
+    /*public Guid? UpdatedById { get; set; } = null;
     //[ForeignKey(nameof(UpdatedById))]
-    public AppUser? UpdatedBy { get; set; } = null;
+    public AppUser? UpdatedBy { get; set; } = null;*/
 
     public DateTime? DeletedDate { get; set; } = null;
-    public Guid? DeletedById { get; set; } = null;
+    /*public Guid? DeletedById { get; set; } = null;
     //[ForeignKey(nameof(DeletedById))]
-    public AppUser? DeletedBy { get; set; } = null;
+    public AppUser? DeletedBy { get; set; } = null;*/
 }
