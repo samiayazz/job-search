@@ -1,7 +1,8 @@
 ﻿namespace JobSearch.Application.Exceptions;
+
 public class CustomException : Exception
 {
-    public CustomException()
+    public CustomException() : base("An unexpected error has occurred!")
     {
     }
 

@@ -8,9 +8,10 @@ namespace JobSearch.WebAPI.Extensions.WebAppBuilder;
 
 public static class ConfigureExceptionHandlerExtension
 {
-    public static void UseGlobalExceptionHandler(this WebApplication app)
+    public static void UseGlobalExceptionHandler(this IApplicationBuilder app)
     {
         #region with appBuilder
+
         /*app.UseExceptionHandler(builder =>
         {
             builder.Run(async context =>
@@ -32,6 +33,7 @@ public static class ConfigureExceptionHandlerExtension
                 }
             });
         });*/
+
         #endregion
 
         // Source: https://hakanguzel.medium.com/asp-net-coreda-global-exception-handling-ec11f90b85ce

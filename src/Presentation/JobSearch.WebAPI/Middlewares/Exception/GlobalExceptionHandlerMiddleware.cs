@@ -12,7 +12,7 @@ public class GlobalExceptionHandlerMiddleware
     public GlobalExceptionHandlerMiddleware(RequestDelegate next)
         => _next = next;
 
-    public async Task Invoke(HttpContext context)
+    public async Task InvokeAsync(HttpContext context)
     {
         try
         {
@@ -20,28 +20,27 @@ public class GlobalExceptionHandlerMiddleware
         }
         catch (System.Exception exception)
         {
-            var response = context.Response;
-            response.ContentType = MediaTypeNames.Application.Json;
+            context.Response.ContentType = MediaTypeNames.Application.Json;
             switch (exception)
             {
                 case CustomException:
                     // Custom Exception
-                    response.StatusCode = (int)HttpStatusCode.BadRequest;
+                    context.Response.StatusCode = (int)HttpStatusCode.BadRequest;
                     break;
                 case KeyNotFoundException:
                     // Not Found Exception
-                    response.StatusCode = (int)HttpStatusCode.NotFound;
+                    context.Response.StatusCode = (int)HttpStatusCode.NotFound;
                     break;
                 default:
                     // Unhandled Exception
-                    response.StatusCode = (int)HttpStatusCode.InternalServerError;
+                    context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
                     break;
             }
 
-            var customResponse = new GeneralResponse<string>();
-            customResponse.Success = false;
-            customResponse.Message = $"An exception has occurred! Details: '{exception.Message}'";
-            await response.WriteAsJsonAsync(customResponse);
+            var response = new GeneralResponse<string>();
+            response.Success = false;
+            response.Message = $"An exception has occurred! Details: '{exception.Message}'";
+            await context.Response.WriteAsJsonAsync(response);
         }
     }
 }
