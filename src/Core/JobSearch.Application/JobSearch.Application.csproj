@@ -10,4 +10,16 @@
       <ProjectReference Include="..\JobSearch.Domain\JobSearch.Domain.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="Validators\Identity\" />
+      <Folder Include="Validators\Location\" />
+      <Folder Include="Validators\WorkPreference\" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="FluentValidation" Version="11.8.1" />
+      <PackageReference Include="FluentValidation.AspNetCore" Version="11.3.0" />
+      <PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="11.8.1" />
+    </ItemGroup>
+
 </Project>

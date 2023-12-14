@@ -1,4 +1,5 @@
 ﻿using JobSearch.Application.Contracts.Domain;
+using System.ComponentModel.DataAnnotations;
 
 namespace JobSearch.Domain.Entities.Common;
 

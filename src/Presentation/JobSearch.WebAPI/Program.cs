@@ -24,6 +24,8 @@ if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
+
+    app.UseGlobalExceptionHandler();
 }
 
 app.UseHttpsRedirection();
@@ -31,7 +33,5 @@ app.UseHttpsRedirection();
 app.UseAuthServices();
 
 app.MapControllers();
-
-app.UseGlobalExceptionHandler();
 
 app.Run();
