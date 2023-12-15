@@ -10,6 +10,6 @@ public class JobApplication : EntityBase
     public Guid ApplicantId { get; set; }
     public AppUser Applicant { get; set; }
     public string Description { get; set; }
-    public double SalaryExpection { get; set; }
+    public decimal SalaryExpection { get; set; }
     public int PeriodOfNotice { get; set; }
 }

@@ -4,7 +4,7 @@ using JobSearch.Domain.Entities.WorkPreference;
 
 namespace JobSearch.Domain.Entities.JobPost;
 
-public sealed class Job : ModifiableEntityBase
+public class Job : ModifiableEntityBase
 {
     public string Title { get; set; } // Junior .NET Developer
     public Guid CompanyId { get; set; }

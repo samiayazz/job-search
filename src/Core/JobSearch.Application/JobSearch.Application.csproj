@@ -11,7 +11,9 @@
     </ItemGroup>
 
     <ItemGroup>
+      <Folder Include="DTOs\" />
       <Folder Include="Validators\Identity\" />
+      <Folder Include="Validators\Institution\" />
       <Folder Include="Validators\Location\" />
       <Folder Include="Validators\WorkPreference\" />
     </ItemGroup>

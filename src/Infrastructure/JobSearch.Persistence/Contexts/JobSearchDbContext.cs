@@ -3,6 +3,8 @@ using JobSearch.Domain.Entities.Institution;
 using JobSearch.Domain.Entities.JobPost;
 using JobSearch.Domain.Entities.Location;
 using JobSearch.Domain.Entities.WorkPreference;
+using JobSearch.Persistence.Configurations.Common;
+using JobSearch.Persistence.Configurations.Identity;
 using JobSearch.Persistence.Configurations.Institution;
 using JobSearch.Persistence.Configurations.JobPost;
 using JobSearch.Persistence.Configurations.Location;
@@ -35,17 +37,29 @@ public class JobSearchDbContext : IdentityDbContext<AppUser, AppRole, Guid>
     {
         base.OnModelCreating(builder);
 
+        // Identity
+        builder.ApplyConfiguration(new AppUserConfiguration());
+        builder.ApplyConfiguration(new AppRoleConfiguration());
+
+        // JobPost
         builder.ApplyConfiguration(new JobConfiguration());
+        builder.ApplyConfiguration(new JobApplicationConfiguration());
         builder.ApplyConfiguration(new DepartmentConfiguration());
 
+        // Institution
         builder.ApplyConfiguration(new CompanyConfiguration());
         builder.ApplyConfiguration(new SectorConfiguration());
 
+        // Location
         builder.ApplyConfiguration(new CountryConfiguration());
         builder.ApplyConfiguration(new ProvinceConfiguration());
         builder.ApplyConfiguration(new AddressConfiguration());
 
+        // WorkPreference
         builder.ApplyConfiguration(new WorkTypeConfiguration());
         builder.ApplyConfiguration(new WorkModelConfiguration());
+
+        /*// Common
+        builder.ApplyConfiguration(new ModifiableEntityBaseConfiguration());*/
     }
 }
