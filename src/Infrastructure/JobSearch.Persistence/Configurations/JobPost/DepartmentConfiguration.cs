@@ -18,6 +18,8 @@ public class DepartmentConfiguration : IEntityTypeConfiguration<Department>
         _builder.Property(x => x.Name)
             .HasMaxLength(50)
             .IsRequired();
+
+        SeedData();
     }
 
     private void ConfigureRelationships()
@@ -26,5 +28,17 @@ public class DepartmentConfiguration : IEntityTypeConfiguration<Department>
         _builder.HasMany(department => department.Jobs)
             .WithOne(job => job.Department)
             .HasForeignKey(job => job.DepartmentId);
+    }
+
+    private void SeedData()
+    {
+        _builder.HasData(new List<Department>()
+        {
+            new()
+            {
+                Id = Guid.Parse("8AAF619E-E69E-4178-B5E0-04344D04B429"),
+                Name = "Software Development"
+            }
+        });
     }
 }

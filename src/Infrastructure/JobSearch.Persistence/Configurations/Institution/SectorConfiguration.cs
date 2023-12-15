@@ -18,6 +18,8 @@ public class SectorConfiguration : IEntityTypeConfiguration<Sector>
         _builder.Property(x => x.Name)
             .HasMaxLength(50)
             .IsRequired();
+
+        SeedData();
     }
 
     private void ConfigureRelationships()
@@ -26,5 +28,17 @@ public class SectorConfiguration : IEntityTypeConfiguration<Sector>
         _builder.HasMany(sector => sector.Companies)
             .WithOne(company => company.Sector)
             .HasForeignKey(company => company.SectorId);
+    }
+
+    private void SeedData()
+    {
+        _builder.HasData(new List<Sector>()
+        {
+            new()
+            {
+                Id = Guid.Parse("F4901614-5E4F-4B47-B72B-7A21585263EB"),
+                Name = "Information Technologies"
+            }
+        });
     }
 }

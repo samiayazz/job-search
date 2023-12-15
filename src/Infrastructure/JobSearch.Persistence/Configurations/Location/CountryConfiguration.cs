@@ -18,6 +18,8 @@ public class CountryConfiguration : IEntityTypeConfiguration<Country>
         _builder.Property(x => x.Name)
             .HasMaxLength(50)
             .IsRequired();
+
+        SeedData();
     }
 
     private void ConfigureRelationships()
@@ -27,5 +29,14 @@ public class CountryConfiguration : IEntityTypeConfiguration<Country>
             .WithOne(province => province.Country)
             .HasForeignKey(province => province.CountryId)
             .OnDelete(DeleteBehavior.Cascade);
+    }
+
+    private void SeedData()
+    {
+        _builder.HasData(new Country()
+        {
+            Id = Guid.Parse("FBAA76DA-0F6B-46C7-930F-586E3BBA2CF8"),
+            Name = "Türkiye"
+        });
     }
 }

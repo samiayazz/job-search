@@ -5,6 +5,6 @@ namespace JobSearch.Domain.Entities.WorkPreference;
 
 public class WorkModel : EntityBase
 {
-    public string Name { get; set; } // In-Office, Remote, Hybrid
+    public string Name { get; set; }
     public ICollection<Job> Jobs { get; set; }
 }
