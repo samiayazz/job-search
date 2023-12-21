@@ -12,8 +12,8 @@ namespace JobSearch.WebAPI.Controllers
         public UsersController(IUserService userService)
             => _userService = userService;
 
-        [HttpGet("[action]", Name = "UsersGetAll")]
-        public IActionResult GetAll()
+        [HttpGet("register", Name = "Register")]
+        public async Task<IActionResult> RegisterAsync()
         {
             return Ok(_userService.GetAllUsers());
         }

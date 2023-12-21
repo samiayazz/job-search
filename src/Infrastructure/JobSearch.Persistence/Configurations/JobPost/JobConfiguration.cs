@@ -20,6 +20,11 @@ public class JobConfiguration : IEntityTypeConfiguration<Job>
             .HasMaxLength(50)
             .IsRequired();
 
+        //Position
+        _builder.Property(x => x.Position)
+            .HasMaxLength(50)
+            .IsRequired();
+
         // YearsOfExperience
         _builder.Property(x => x.YearsOfExperience)
             .IsRequired();

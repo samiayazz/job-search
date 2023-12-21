@@ -7,6 +7,10 @@ namespace JobSearch.Domain.Entities.Identity;
 
 public class AppUser : IdentityUser<Guid>
 {
+    public override Guid Id { get; set; }
+    public override string UserName { get; set; }
+    public override string Email { get; set; }
+    public override string PasswordHash { get; set; }
     public string FirstName { get; set; }
     public string LastName { get; set; }
     public Guid RoleId { get; set; }

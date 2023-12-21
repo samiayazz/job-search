@@ -1,3 +1,4 @@
+using JobSearch.Application.Extensions.WebAppBuilder;
 using JobSearch.Infrastructure.Extensions.WebAppBuilder;
 using JobSearch.Persistence.Extensions.WebAppBuilder;
 using JobSearch.WebAPI.Extensions.WebAppBuilder;
@@ -12,8 +13,9 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddPersistenceServices(builder.Configuration);
+builder.Services.AddApplicationServices();
 builder.Services.AddInfrastructureServices();
+builder.Services.AddPersistenceServices(builder.Configuration);
 
 builder.Services.AddAuthServices(builder.Configuration);
 
@@ -24,8 +26,6 @@ if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
-
-    app.UseGlobalExceptionHandler();
 }
 
 app.UseHttpsRedirection();
@@ -33,5 +33,7 @@ app.UseHttpsRedirection();
 app.UseAuthServices();
 
 app.MapControllers();
+
+app.UseGlobalExceptionHandler();
 
 app.Run();

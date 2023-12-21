@@ -2,8 +2,9 @@
 
 namespace JobSearch.Domain.Entities.Identity;
 
-public class AppRole : IdentityRole<Guid>
+public class AppRole : IdentityRole<Guid> // Worker, Recruiter, Founder
 {
-    // Worker, Recruiter, Founder
+    public override Guid Id { get; set; }
+    public override string Name { get; set; }
     public ICollection<AppUser> Users { get; set; }
 }
