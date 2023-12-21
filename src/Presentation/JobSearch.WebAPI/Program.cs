@@ -27,13 +27,15 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+else
+{
+    app.UseGlobalExceptionHandler();
+}
 
 app.UseHttpsRedirection();
 
 app.UseAuthServices();
 
 app.MapControllers();
-
-app.UseGlobalExceptionHandler();
 
 app.Run();

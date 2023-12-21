@@ -11,6 +11,7 @@ public class AppUser : IdentityUser<Guid>
     public override string UserName { get; set; }
     public override string Email { get; set; }
     public override string PasswordHash { get; set; }
+    public override string PhoneNumber { get; set; }
     public string FirstName { get; set; }
     public string LastName { get; set; }
     public Guid RoleId { get; set; }

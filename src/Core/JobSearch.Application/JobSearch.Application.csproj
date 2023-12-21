@@ -11,7 +11,6 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="Mappings\Identity\" />
       <Folder Include="Validators\Identity\" />
       <Folder Include="Validators\Institution\" />
       <Folder Include="Validators\Location\" />
