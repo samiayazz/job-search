@@ -1,6 +1,9 @@
-﻿namespace JobSearch.Application.Contracts.Infrastructure.Services;
+﻿using JobSearch.Application.DTOs.Identity;
+
+namespace JobSearch.Application.Contracts.Infrastructure.Services;
 
 public interface IUserService
 {
-    public Task<bool> RegisterAsync(UserRegisterDto userRegisterDto, string role);
+    public Task<bool> CreateAsync(UserCreateDto userCreateDto, string role);
+    public Task<string> GetTokenAsync(string userNameOrEmail, string password);
 }

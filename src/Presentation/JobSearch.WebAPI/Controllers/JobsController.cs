@@ -5,6 +5,7 @@ using JobSearch.Application.Contracts.Persistence.Repositories;
 using JobSearch.Application.DTOs.JobPost;
 using JobSearch.Application.Exceptions;
 using JobSearch.Domain.Entities.JobPost;
+using JobSearch.WebAPI.Helpers.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 namespace JobSearch.WebAPI.Controllers;
@@ -18,11 +19,9 @@ public class JobsController(IJobService service) : ControllerBase
     [HttpPost("create", Name = "CreateJob")]
     public async Task<IActionResult> CreateAsync([FromBody] JobCreateDto job)
     {
-        Guid userId = Guid.Empty;
-        if (!Guid.TryParse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value, out userId))
-            return Unauthorized();
+        var user = UserHelper.ResolveUserInToken();
 
-        if (await _service.CreateAsync(userId, job))
+        if (await _service.CreateAsync(user.Id, job))
             return Ok();
         else
             return Problem();

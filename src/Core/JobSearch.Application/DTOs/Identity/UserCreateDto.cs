@@ -1,6 +1,6 @@
-﻿namespace JobSearch.Application;
+﻿namespace JobSearch.Application.DTOs.Identity;
 
-public class UserRegisterDto
+public class UserCreateDto
 {
     public string UserName { get; set; }
     public string Email { get; set; }
