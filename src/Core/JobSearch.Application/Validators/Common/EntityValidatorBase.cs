@@ -8,6 +8,5 @@ public abstract class EntityValidatorBase<T> : AbstractValidator<T> where T : Mo
 {
     public EntityValidatorBase()
     {
-
     }
 }
