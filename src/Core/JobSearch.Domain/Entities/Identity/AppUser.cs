@@ -15,10 +15,10 @@ public class AppUser : IdentityUser<Guid>
     public string FirstName { get; set; }
     public string LastName { get; set; }
     public Guid RoleId { get; set; }
-    public AppRole Role { get; set; }
-    public ICollection<Address> Addresses { get; set; }
-    public ICollection<JobApplication> JobApplications { get; set; }
+    public virtual AppRole Role { get; set; }
+    public virtual ICollection<Address> Addresses { get; set; }
+    public virtual ICollection<JobApplication> JobApplications { get; set; }
     public Guid? CompanyId { get; set; }
-    public Company? Company { get; set; }
-    public ICollection<Job>? Jobs { get; set; }
+    public virtual Company? Company { get; set; }
+    public virtual ICollection<Job>? Jobs { get; set; }
 }

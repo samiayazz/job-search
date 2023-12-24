@@ -1,11 +1,9 @@
 ﻿using System.Linq.Expressions;
-using JobSearch.Application.Contracts.Domain;
-using Microsoft.VisualBasic.CompilerServices;
 
-namespace JobSearch.Application.Contracts.Persistence.Repositories;
+namespace JobSearch.Application.Contracts.Persistence.Repositories.Common;
 
 public interface IRepository<TEntity, TKey>
-    where TEntity : class, IEntity, new()
+    where TEntity : class, new()
     where TKey : struct
 {
     public Task<ICollection<TEntity>> GetAllAsync(Expression<Func<TEntity, bool>> predicate = null);

@@ -1,6 +1,7 @@
 ﻿using System.Linq.Expressions;
 using JobSearch.Application.Contracts.Domain;
 using JobSearch.Application.Contracts.Persistence.Repositories;
+using JobSearch.Application.Contracts.Persistence.Repositories.Common;
 using JobSearch.Persistence.Contexts;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
@@ -8,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Internal;
 namespace JobSearch.Persistence.Repositories.Common;
 
 public abstract class RepositoryBase<TEntity, TKey> : IRepository<TEntity, TKey>
-    where TEntity : class, IEntity, new()
+    where TEntity : class, new()
     where TKey : struct
 {
     protected readonly JobSearchDbContext _dbContext;

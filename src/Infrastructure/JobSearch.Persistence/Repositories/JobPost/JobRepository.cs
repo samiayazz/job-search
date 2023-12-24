@@ -1,10 +1,10 @@
 ﻿using JobSearch.Application.Contracts.Persistence.Repositories;
-using JobSearch.Domain.Entities;
+using JobSearch.Application.Contracts.Persistence.Repositories.JobPost;
 using JobSearch.Domain.Entities.JobPost;
 using JobSearch.Persistence.Contexts;
 using JobSearch.Persistence.Repositories.Common;
 
-namespace JobSearch.Persistence.Repositories;
+namespace JobSearch.Persistence.Repositories.JobPost;
 
 public class JobRepository : RepositoryBase<Job, Guid>, IJobRepository
 {

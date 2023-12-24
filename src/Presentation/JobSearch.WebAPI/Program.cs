@@ -1,10 +1,7 @@
 using JobSearch.Application.Extensions.WebAppBuilder;
-using JobSearch.Domain.Entities.Identity;
 using JobSearch.Infrastructure.Extensions.WebAppBuilder;
 using JobSearch.Persistence.Extensions.WebAppBuilder;
 using JobSearch.WebAPI.Extensions.WebAppBuilder;
-using JobSearch.WebAPI.Helpers.Identity;
-using Microsoft.AspNetCore.Identity;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -17,10 +14,11 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddApplicationServices();
-builder.Services.AddInfrastructureServices();
 builder.Services.AddPersistenceServices(builder.Configuration);
+builder.Services.AddInfrastructureServices();
 
 builder.Services.AddAuthServices(builder.Configuration);
+builder.Services.AddPresentationServices();
 
 var app = builder.Build();
 

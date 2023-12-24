@@ -1,4 +1,5 @@
 ﻿using JobSearch.Application.Contracts.Infrastructure.Services;
+using JobSearch.Infrastructure.Helpers.Encryption;
 using JobSearch.Infrastructure.Services.JobPost;
 using JobSearch.Infrastructure.Services.User;
 using Microsoft.Extensions.DependencyInjection;
@@ -11,5 +12,7 @@ public static class ConfigureInfrastructureServicesExtension
     {
         services.AddScoped<IUserService, IdentityUserService>();
         services.AddScoped<IJobService, JobService>();
+
+        services.AddScoped<EncryptionHelper>();
     }
 }

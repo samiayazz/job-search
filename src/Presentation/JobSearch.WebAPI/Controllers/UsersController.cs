@@ -1,18 +1,27 @@
 using JobSearch.Application.Contracts.Infrastructure.Services;
 using JobSearch.Application.DTOs.Identity;
 using JobSearch.WebAPI.Helpers.Identity;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace JobSearch.WebAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class UsersController : ControllerBase
+    public class UsersController(IUserService userService, UserHelper userHelper) : ControllerBase
     {
-        private readonly IUserService _userService;
+        private readonly IUserService _userService = userService;
+        private readonly UserHelper _userHelper = userHelper;
 
-        public UsersController(IUserService userService)
-            => _userService = userService;
+        [HttpGet("token", Name = "GetToken")]
+        public async Task<IActionResult> GetTokenAsync([FromQuery] string userNameOrEmail, [FromQuery] string password)
+        {
+            string token = await _userService.GetTokenAsync(userNameOrEmail, password);
+            if (!string.IsNullOrEmpty(token))
+                return Ok(token);
+            else
+                return Problem("Token oluşturulurken bir hata oluştu.");
+        }
 
         [HttpPost("create/{role}", Name = "CreateUser")]
         public async Task<IActionResult> CreateAsync([FromBody] UserCreateDto user, [FromRoute] string role = "worker")
@@ -23,14 +32,16 @@ namespace JobSearch.WebAPI.Controllers
                 return Problem("Kullanıcı oluşturulurken bir hata oluştu.");
         }
 
-        [HttpGet("token", Name = "GetToken")]
-        public async Task<IActionResult> GetTokenAsync([FromQuery] string userNameOrEmail, [FromQuery] string password)
+        [Authorize]
+        [HttpGet("remove", Name = "RemoveUser")]
+        public async Task<IActionResult> RemoveAsync()
         {
-            string token = await _userService.GetTokenAsync(userNameOrEmail, password);
-            if (!string.IsNullOrEmpty(token))
-                return Ok(token);
+            var user = _userHelper.ResolveUserInToken();
+
+            if (await _userService.RemoveAsync(user))
+                return Ok();
             else
-                return Problem("Token oluşturulurken bir hata oluştu.");
+                return Problem("Kullanıcı silinirken bir hata oluştu.");
         }
     }
 }

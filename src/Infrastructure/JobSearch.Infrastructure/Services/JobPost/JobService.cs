@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using JobSearch.Application.Contracts.Infrastructure.Services;
 using JobSearch.Application.Contracts.Persistence.Repositories;
+using JobSearch.Application.Contracts.Persistence.Repositories.JobPost;
 using JobSearch.Application.DTOs.JobPost;
 using JobSearch.Domain.Entities.JobPost;
 

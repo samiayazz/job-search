@@ -1,7 +1,11 @@
 ﻿using JobSearch.Application.Contracts.Persistence.Repositories;
+using JobSearch.Application.Contracts.Persistence.Repositories.JobPost;
+using JobSearch.Application.Contracts.Persistence.Repositories.User;
 using JobSearch.Domain.Entities.Identity;
 using JobSearch.Persistence.Contexts;
 using JobSearch.Persistence.Repositories;
+using JobSearch.Persistence.Repositories.JobPost;
+using JobSearch.Persistence.Repositories.User;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -20,5 +24,6 @@ public static class ConfigurePersistenceServicesExtension
             .AddEntityFrameworkStores<JobSearchDbContext>();
 
         services.AddScoped<IJobRepository, JobRepository>();
+        services.AddScoped<IUserRepository, UserRepository>();
     }
 }

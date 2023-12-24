@@ -10,7 +10,7 @@ public class Address : ModifiableEntityBase
     public string? Neighborhood { get; set; }
     public string? FullAddress { get; set; }
     public Guid ProvinceId { get; set; }
-    public Province Province { get; set; }
+    public virtual Province Province { get; set; }
     public Guid? CompanyId { get; set; }
-    public Company? Company { get; set; }
+    public virtual Company? Company { get; set; }
 }

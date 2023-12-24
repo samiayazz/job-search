@@ -33,6 +33,7 @@ namespace JobSearch.Persistence.Migrations
                         .HasColumnType("text");
 
                     b.Property<string>("Name")
+                        .IsRequired()
                         .HasMaxLength(256)
                         .HasColumnType("character varying(256)");
 
@@ -280,7 +281,8 @@ namespace JobSearch.Persistence.Migrations
 
                     b.Property<string>("Position")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasMaxLength(50)
+                        .HasColumnType("character varying(50)");
 
                     b.Property<string>("Title")
                         .IsRequired()
@@ -450,487 +452,487 @@ namespace JobSearch.Persistence.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("afadb6da-1e5b-4b17-ab6b-aa096e287747"),
+                            Id = new Guid("f57e51e0-75f0-4137-b0ff-d134fd99de8c"),
                             CountryId = new Guid("fbaa76da-0f6b-46c7-930f-586e3bba2cf8"),
                             Name = "Adana"
                         },
                         new
                         {
-                            Id = new Guid("ec2dac58-fa5e-4c77-a838-458aea179e38"),
+                            Id = new Guid("0e731806-4106-4d82-830f-ed769c7d707b"),
                             CountryId = new Guid("fbaa76da-0f6b-46c7-930f-586e3bba2cf8"),
                             Name = "Adıyaman"
                         },
                         new
                         {
-                            Id = new Guid("341a9ff6-7bf5-4df8-af4a-c0bfe07d89d6"),
+                            Id = new Guid("bb31211b-8b7e-4447-a01a-38d6a3632dc4"),
                             CountryId = new Guid("fbaa76da-0f6b-46c7-930f-586e3bba2cf8"),
                             Name = "Afyonkarahisar"
                         },
                         new
                         {
-                            Id = new Guid("e0c4e248-f4ea-41ad-8582-fd32a546bff0"),
+                            Id = new Guid("1ba5a6bf-ca2b-4a28-82ce-4ce6f7820cf1"),
                             CountryId = new Guid("fbaa76da-0f6b-46c7-930f-586e3bba2cf8"),
                             Name = "Ağrı"
                         },
                         new
                         {
-                            Id = new Guid("07bcd57d-aefb-43f1-9e36-d7d4971a5a8c"),
+                            Id = new Guid("da6f029e-4db3-4df8-be86-e52023550fa3"),
                             CountryId = new Guid("fbaa76da-0f6b-46c7-930f-586e3bba2cf8"),
                             Name = "Aksaray"
                         },
                         new
                         {
-                            Id = new Guid("afff5fff-7e5d-44be-b600-0acae61e8c46"),
+                            Id = new Guid("c00ab512-b7ea-494c-973f-ac18d571e75c"),
                             CountryId = new Guid("fbaa76da-0f6b-46c7-930f-586e3bba2cf8"),
                             Name = "Amasya"
                         },
                         new
                         {
-                            Id = new Guid("3af8f7ca-d309-40ef-a0f8-70394f3601ca"),
+                            Id = new Guid("99e323c0-1fde-4fd7-9d21-791d5ed69953"),
                             CountryId = new Guid("fbaa76da-0f6b-46c7-930f-586e3bba2cf8"),
                             Name = "Ankara"
                         },
                         new
                         {
-                            Id = new Guid("d81d708a-bf1f-488f-89da-7cab2ed48808"),
+                            Id = new Guid("4387db05-0d8a-457b-a0cf-d6eeb7338fb9"),
                             CountryId = new Guid("fbaa76da-0f6b-46c7-930f-586e3bba2cf8"),
                             Name = "Antalya"
                         },
                         new
                         {
-                            Id = new Guid("2c1b05b9-d901-4f59-b339-8aab9f488573"),
+                            Id = new Guid("1390b4ab-7d7d-41e1-ac51-fa7c71aea19e"),
                             CountryId = new Guid("fbaa76da-0f6b-46c7-930f-586e3bba2cf8"),
                             Name = "Ardahan"
                         },
                         new
                         {
-                            Id = new Guid("dbf9cbf2-0807-4ade-8db4-cc034e480a45"),
+                            Id = new Guid("b6dd1bfc-5f0c-41c3-9000-1530d1d2d54d"),
                             CountryId = new Guid("fbaa76da-0f6b-46c7-930f-586e3bba2cf8"),
                             Name = "Artvin"
                         },
                         new
                         {
-                            Id = new Guid("8882f248-a914-488a-9b07-0eedb7890b3d"),
+                            Id = new Guid("673cf643-6544-4fb3-9252-9588cfa35d74"),
                             CountryId = new Guid("fbaa76da-0f6b-46c7-930f-586e3bba2cf8"),
                             Name = "Aydın"
                         },
                         new
                         {
-                            Id = new Guid("84f5b8cb-ef95-46aa-8fee-e3add60c0f47"),
+                            Id = new Guid("fb795c40-07b8-47c5-a400-5d1374153bcd"),
                             CountryId = new Guid("fbaa76da-0f6b-46c7-930f-586e3bba2cf8"),
                             Name = "Balıkesir"
                         },
                         new
                         {
-                            Id = new Guid("22980679-6595-40e9-b6f7-f96a965f9d50"),
+                            Id = new Guid("2ac287fd-bab3-45c1-aed4-3f52ae20d330"),
                             CountryId = new Guid("fbaa76da-0f6b-46c7-930f-586e3bba2cf8"),
                             Name = "Bartın"
                         },
                         new
                         {
-                            Id = new Guid("42b8c678-5362-42e8-9329-5bcf8356b550"),
+                            Id = new Guid("aa1bdb1e-2c43-495f-9f58-36fdd391d52c"),
                             CountryId = new Guid("fbaa76da-0f6b-46c7-930f-586e3bba2cf8"),
                             Name = "Batman"
                         },
                         new
                         {
-                            Id = new Guid("89368a6d-5c07-4c63-b4a8-d85ef5863db1"),
+                            Id = new Guid("e0db3a58-3ceb-4165-962d-cf7ec0dccf9a"),
                             CountryId = new Guid("fbaa76da-0f6b-46c7-930f-586e3bba2cf8"),
                             Name = "Bayburt"
                         },
                         new
                         {
-                            Id = new Guid("44b7e10b-3119-4dea-9f5f-c381087b5a94"),
+                            Id = new Guid("9f476312-2e11-4818-857b-888fb26372b8"),
                             CountryId = new Guid("fbaa76da-0f6b-46c7-930f-586e3bba2cf8"),
                             Name = "Bilecik"
                         },
                         new
                         {
-                            Id = new Guid("e9176056-873a-4ee1-b88c-696f804485a3"),
+                            Id = new Guid("1bc323a8-4277-433a-8202-a46a54a84f16"),
                             CountryId = new Guid("fbaa76da-0f6b-46c7-930f-586e3bba2cf8"),
                             Name = "Bingöl"
                         },
                         new
                         {
-                            Id = new Guid("2302ac73-09fd-4842-82fc-d2ce8ccfc86e"),
+                            Id = new Guid("6907ebe8-35c3-4328-b6ed-97b09fba370c"),
                             CountryId = new Guid("fbaa76da-0f6b-46c7-930f-586e3bba2cf8"),
                             Name = "Bitlis"
                         },
                         new
                         {
-                            Id = new Guid("c7062da2-bb46-4870-a11a-9125f4935017"),
+                            Id = new Guid("b0b6ec04-ef66-46f6-be1f-9ac9c532b4a6"),
                             CountryId = new Guid("fbaa76da-0f6b-46c7-930f-586e3bba2cf8"),
                             Name = "Bolu"
                         },
                         new
                         {
-                            Id = new Guid("92546053-06c8-4df6-8e7b-d9eba9f92891"),
+                            Id = new Guid("af0084ce-c3da-4fa9-9e98-2b765400d9a4"),
                             CountryId = new Guid("fbaa76da-0f6b-46c7-930f-586e3bba2cf8"),
                             Name = "Burdur"
                         },
                         new
                         {
-                            Id = new Guid("da899578-fb82-46f4-8e75-3f0d7498dc83"),
+                            Id = new Guid("13d65077-65eb-4926-ae94-28141ba60633"),
                             CountryId = new Guid("fbaa76da-0f6b-46c7-930f-586e3bba2cf8"),
                             Name = "Bursa"
                         },
                         new
                         {
-                            Id = new Guid("3b818efa-0481-44d3-9f7f-06f043e3ce60"),
+                            Id = new Guid("ac487de7-0ed5-4d03-ab99-3a35422dfabe"),
                             CountryId = new Guid("fbaa76da-0f6b-46c7-930f-586e3bba2cf8"),
                             Name = "Çanakkale"
                         },
                         new
                         {
-                            Id = new Guid("c84997da-7f0b-43e8-9186-9aa0161d3f96"),
+                            Id = new Guid("0fd823d6-1d1a-46b0-b889-2807426683b4"),
                             CountryId = new Guid("fbaa76da-0f6b-46c7-930f-586e3bba2cf8"),
                             Name = "Çankırı"
                         },
                         new
                         {
-                            Id = new Guid("f86c8bfe-00a9-40e8-afbc-6df0f8ec7932"),
+                            Id = new Guid("2713ee60-ccaa-4168-9c6d-5d88fe3e0469"),
                             CountryId = new Guid("fbaa76da-0f6b-46c7-930f-586e3bba2cf8"),
                             Name = "Çorum"
                         },
                         new
                         {
-                            Id = new Guid("92012984-1a16-4533-8e84-9747f61742b4"),
+                            Id = new Guid("04066d07-a60e-4625-8091-2644626b861b"),
                             CountryId = new Guid("fbaa76da-0f6b-46c7-930f-586e3bba2cf8"),
                             Name = "Denizli"
                         },
                         new
                         {
-                            Id = new Guid("56ab7d11-a050-4fa9-9606-df9e08976acc"),
+                            Id = new Guid("c73329c5-0a64-4b1d-bb63-34906a9a0110"),
                             CountryId = new Guid("fbaa76da-0f6b-46c7-930f-586e3bba2cf8"),
                             Name = "Diyarbakır"
                         },
                         new
                         {
-                            Id = new Guid("659673b4-05c7-45c0-b943-6ac90746c4a8"),
+                            Id = new Guid("79912c0c-f671-4484-9030-15b3e3c6fc51"),
                             CountryId = new Guid("fbaa76da-0f6b-46c7-930f-586e3bba2cf8"),
                             Name = "Düzce"
                         },
                         new
                         {
-                            Id = new Guid("c74b2636-c733-4b5a-9c9a-3af49fae855e"),
+                            Id = new Guid("d99ba584-ee71-4b05-90d3-a5b8e5280d46"),
                             CountryId = new Guid("fbaa76da-0f6b-46c7-930f-586e3bba2cf8"),
                             Name = "Edirne"
                         },
                         new
                         {
-                            Id = new Guid("068d6c9f-846b-43b3-af78-9d715ff377be"),
+                            Id = new Guid("3a70fd06-4046-4ef7-93db-f89cdaf26e48"),
                             CountryId = new Guid("fbaa76da-0f6b-46c7-930f-586e3bba2cf8"),
                             Name = "Elazığ"
                         },
                         new
                         {
-                            Id = new Guid("2f08590d-617b-4959-ae4b-89fa47ececa1"),
+                            Id = new Guid("83c72b95-c215-48af-8bba-983d8458cc51"),
                             CountryId = new Guid("fbaa76da-0f6b-46c7-930f-586e3bba2cf8"),
                             Name = "Erzincan"
                         },
                         new
                         {
-                            Id = new Guid("026da2cd-32fa-4cce-b439-3bfdd17890f7"),
+                            Id = new Guid("c93c59ce-36bc-4c72-b667-f92766978dc1"),
                             CountryId = new Guid("fbaa76da-0f6b-46c7-930f-586e3bba2cf8"),
                             Name = "Erzurum"
                         },
                         new
                         {
-                            Id = new Guid("15ed2dfa-cb2d-4a78-8518-a0b002046e21"),
+                            Id = new Guid("cebb3723-2118-49fe-acc1-73723d3fc90c"),
                             CountryId = new Guid("fbaa76da-0f6b-46c7-930f-586e3bba2cf8"),
                             Name = "Eskişehir"
                         },
                         new
                         {
-                            Id = new Guid("fe70d87c-b0d3-481f-bfc6-3ddf274e8fc3"),
+                            Id = new Guid("aaaefd47-af7c-4bff-a97a-8c204f5b0b73"),
                             CountryId = new Guid("fbaa76da-0f6b-46c7-930f-586e3bba2cf8"),
                             Name = "Gaziantep"
                         },
                         new
                         {
-                            Id = new Guid("2369d340-b894-4118-bb49-9e37307c9759"),
+                            Id = new Guid("4adaebbd-b515-4751-ad21-2b1dd0c4b547"),
                             CountryId = new Guid("fbaa76da-0f6b-46c7-930f-586e3bba2cf8"),
                             Name = "Giresun"
                         },
                         new
                         {
-                            Id = new Guid("f5f36342-43f6-46e9-9a92-6c95e0d46315"),
+                            Id = new Guid("896f1c07-8a0f-4dd8-aedd-2a3e4dcea9f5"),
                             CountryId = new Guid("fbaa76da-0f6b-46c7-930f-586e3bba2cf8"),
                             Name = "Gümüşhane"
                         },
                         new
                         {
-                            Id = new Guid("1e1eb6c5-d6ca-45d1-b019-5853bcfd2a95"),
+                            Id = new Guid("20c14b59-1d8c-4b39-8821-06170bafbed4"),
                             CountryId = new Guid("fbaa76da-0f6b-46c7-930f-586e3bba2cf8"),
                             Name = "Hakkâri"
                         },
                         new
                         {
-                            Id = new Guid("15bb8217-3c85-433f-9f7d-6a503993ec3f"),
+                            Id = new Guid("15cf425c-7bac-4084-bfad-1158f6b8ad17"),
                             CountryId = new Guid("fbaa76da-0f6b-46c7-930f-586e3bba2cf8"),
                             Name = "Hatay"
                         },
                         new
                         {
-                            Id = new Guid("f1e8ff25-1c65-494a-8e0f-55091405f709"),
+                            Id = new Guid("943a7cdc-6157-4836-afb6-deceb3f1426f"),
                             CountryId = new Guid("fbaa76da-0f6b-46c7-930f-586e3bba2cf8"),
                             Name = "Iğdır"
                         },
                         new
                         {
-                            Id = new Guid("cb92bfb2-105e-4e2d-a3ed-d9a9956887bd"),
+                            Id = new Guid("61bb6f10-0f92-485d-b8b5-36d48456cda5"),
                             CountryId = new Guid("fbaa76da-0f6b-46c7-930f-586e3bba2cf8"),
                             Name = "Isparta"
                         },
                         new
                         {
-                            Id = new Guid("33cc6a14-8c88-46be-bd54-9248350f4999"),
+                            Id = new Guid("72f50578-4412-4884-b57b-6475aceb1b01"),
                             CountryId = new Guid("fbaa76da-0f6b-46c7-930f-586e3bba2cf8"),
                             Name = "İstanbul"
                         },
                         new
                         {
-                            Id = new Guid("822e1547-f45f-44eb-8c7b-9c48b6511190"),
+                            Id = new Guid("4d5df297-3439-4562-aff0-cbd0ba9cadc2"),
                             CountryId = new Guid("fbaa76da-0f6b-46c7-930f-586e3bba2cf8"),
                             Name = "İzmir"
                         },
                         new
                         {
-                            Id = new Guid("0dac1c81-af4b-4b8f-8d29-c6d2a08b35f2"),
+                            Id = new Guid("a0b85136-a480-4aeb-a2fc-33a906a3d885"),
                             CountryId = new Guid("fbaa76da-0f6b-46c7-930f-586e3bba2cf8"),
                             Name = "Kahramanmaraş"
                         },
                         new
                         {
-                            Id = new Guid("f8e06883-9d94-4b84-aee2-8947976e9e33"),
+                            Id = new Guid("16d38f6d-c657-42d3-a5fc-6d412c1db443"),
                             CountryId = new Guid("fbaa76da-0f6b-46c7-930f-586e3bba2cf8"),
                             Name = "Karabük"
                         },
                         new
                         {
-                            Id = new Guid("86297fe6-549e-404b-8916-9025151bf72f"),
+                            Id = new Guid("3c560543-f746-49bb-b6d5-7c83c47c69e7"),
                             CountryId = new Guid("fbaa76da-0f6b-46c7-930f-586e3bba2cf8"),
                             Name = "Karaman"
                         },
                         new
                         {
-                            Id = new Guid("e75da4b0-b49e-4ec1-8617-47d96382ca56"),
+                            Id = new Guid("12eaca1a-ac46-42b1-a7ba-9b3fac910aba"),
                             CountryId = new Guid("fbaa76da-0f6b-46c7-930f-586e3bba2cf8"),
                             Name = "Kars"
                         },
                         new
                         {
-                            Id = new Guid("0cf93f07-2a12-48ff-b694-5d2deb35fa13"),
+                            Id = new Guid("41c0d76b-4bc9-4f24-93b2-3fc777e4fd4a"),
                             CountryId = new Guid("fbaa76da-0f6b-46c7-930f-586e3bba2cf8"),
                             Name = "Kastamonu"
                         },
                         new
                         {
-                            Id = new Guid("42a19744-173f-40c3-bd72-31a6a5a0e0ef"),
+                            Id = new Guid("b188d103-4f67-4801-9e71-e000550a4abf"),
                             CountryId = new Guid("fbaa76da-0f6b-46c7-930f-586e3bba2cf8"),
                             Name = "Kayseri"
                         },
                         new
                         {
-                            Id = new Guid("b8430d0d-45dc-4691-a9ef-51b41865609e"),
+                            Id = new Guid("62589d4c-89ca-445a-bbd2-7bf5d85763bd"),
                             CountryId = new Guid("fbaa76da-0f6b-46c7-930f-586e3bba2cf8"),
                             Name = "Kilis"
                         },
                         new
                         {
-                            Id = new Guid("58347f51-7074-4e4a-b370-f4111d7781ef"),
+                            Id = new Guid("b69efb5d-5399-4b68-ae77-b543f8864d30"),
                             CountryId = new Guid("fbaa76da-0f6b-46c7-930f-586e3bba2cf8"),
                             Name = "Kırıkkale"
                         },
                         new
                         {
-                            Id = new Guid("c871e15a-46b5-4e35-badd-05d22b369451"),
+                            Id = new Guid("3a02e993-35e5-4bcb-abfe-59eac7f0bf5e"),
                             CountryId = new Guid("fbaa76da-0f6b-46c7-930f-586e3bba2cf8"),
                             Name = "Kırklareli"
                         },
                         new
                         {
-                            Id = new Guid("6a050542-1f66-4986-b5eb-19cd20e127f8"),
+                            Id = new Guid("cae9529a-c537-4776-9bdf-6990e5b5836c"),
                             CountryId = new Guid("fbaa76da-0f6b-46c7-930f-586e3bba2cf8"),
                             Name = "Kırşehir"
                         },
                         new
                         {
-                            Id = new Guid("d1398437-9db7-4a96-9b0b-810f68832538"),
+                            Id = new Guid("457a5f59-9f63-4bdb-b5a2-ae538eb8bf65"),
                             CountryId = new Guid("fbaa76da-0f6b-46c7-930f-586e3bba2cf8"),
                             Name = "Kocaeli"
                         },
                         new
                         {
-                            Id = new Guid("9a5ae024-ce77-42f4-8b76-b602a5688977"),
+                            Id = new Guid("7a6f15d4-e621-450f-aef3-802f0c8b6ceb"),
                             CountryId = new Guid("fbaa76da-0f6b-46c7-930f-586e3bba2cf8"),
                             Name = "Konya"
                         },
                         new
                         {
-                            Id = new Guid("7ec2f5f4-8c49-494d-b71a-6900916c73ec"),
+                            Id = new Guid("2c7d027a-dfd5-4286-849a-fdef46cbc80f"),
                             CountryId = new Guid("fbaa76da-0f6b-46c7-930f-586e3bba2cf8"),
                             Name = "Kütahya"
                         },
                         new
                         {
-                            Id = new Guid("d0e27f5b-69a4-4da4-bd48-34cb33de5e91"),
+                            Id = new Guid("7066d192-0336-42db-8df3-cbc0c6cc1c11"),
                             CountryId = new Guid("fbaa76da-0f6b-46c7-930f-586e3bba2cf8"),
                             Name = "Malatya"
                         },
                         new
                         {
-                            Id = new Guid("ccf13bae-c912-457c-a9b6-d45d22f1f85a"),
+                            Id = new Guid("a6cb4e0b-3676-4a97-92dd-73d92c2923fe"),
                             CountryId = new Guid("fbaa76da-0f6b-46c7-930f-586e3bba2cf8"),
                             Name = "Manisa"
                         },
                         new
                         {
-                            Id = new Guid("9a147d65-8eda-423c-8598-f255d8fa7904"),
+                            Id = new Guid("1259629c-75e8-4f5f-84a4-1328e08c82da"),
                             CountryId = new Guid("fbaa76da-0f6b-46c7-930f-586e3bba2cf8"),
                             Name = "Mardin"
                         },
                         new
                         {
-                            Id = new Guid("10eb6a1c-bd73-425a-819f-1c4152b58504"),
+                            Id = new Guid("50c12697-2cc4-4994-b233-ee7f95493741"),
                             CountryId = new Guid("fbaa76da-0f6b-46c7-930f-586e3bba2cf8"),
                             Name = "Mersin"
                         },
                         new
                         {
-                            Id = new Guid("5c2bb592-8e0c-4fce-a2f6-13cdf313e96a"),
+                            Id = new Guid("bd19d9c8-f78b-451f-b6c4-f094fbbf381a"),
                             CountryId = new Guid("fbaa76da-0f6b-46c7-930f-586e3bba2cf8"),
                             Name = "Muğla"
                         },
                         new
                         {
-                            Id = new Guid("01c64893-2322-4d97-a57d-2b027d7094ed"),
+                            Id = new Guid("3da00853-84c1-440b-9a59-6947aebf2473"),
                             CountryId = new Guid("fbaa76da-0f6b-46c7-930f-586e3bba2cf8"),
                             Name = "Muş"
                         },
                         new
                         {
-                            Id = new Guid("226992e1-745e-41f4-9b33-a2f25ac0ac5b"),
+                            Id = new Guid("208e01fe-6d34-40b6-826c-7b634470a8b7"),
                             CountryId = new Guid("fbaa76da-0f6b-46c7-930f-586e3bba2cf8"),
                             Name = "Nevşehir"
                         },
                         new
                         {
-                            Id = new Guid("c72f3d87-b5c4-42f6-b758-0ecd9e00903a"),
+                            Id = new Guid("859faa0f-2e26-42fc-91e3-b071509a6c5f"),
                             CountryId = new Guid("fbaa76da-0f6b-46c7-930f-586e3bba2cf8"),
                             Name = "Niğde"
                         },
                         new
                         {
-                            Id = new Guid("a67e7220-0581-47ee-ad12-6712d2130e27"),
+                            Id = new Guid("5bd1d662-3dfb-4b33-9e4d-5989c7e8ca56"),
                             CountryId = new Guid("fbaa76da-0f6b-46c7-930f-586e3bba2cf8"),
                             Name = "Ordu"
                         },
                         new
                         {
-                            Id = new Guid("feb74df2-020e-493b-b9c0-b041e64eb9c5"),
+                            Id = new Guid("9767de23-afb6-4d84-916e-ce5a85ef51ec"),
                             CountryId = new Guid("fbaa76da-0f6b-46c7-930f-586e3bba2cf8"),
                             Name = "Osmaniye"
                         },
                         new
                         {
-                            Id = new Guid("fac79587-6a53-4ab3-b256-147c7cacea35"),
+                            Id = new Guid("83587dc7-c645-4921-8d85-534b6bbe96b0"),
                             CountryId = new Guid("fbaa76da-0f6b-46c7-930f-586e3bba2cf8"),
                             Name = "Rize"
                         },
                         new
                         {
-                            Id = new Guid("c9235fc1-deed-48b7-90a7-98bad6bc645c"),
+                            Id = new Guid("729d8348-e1d4-42a8-a963-a2e3c80c0c04"),
                             CountryId = new Guid("fbaa76da-0f6b-46c7-930f-586e3bba2cf8"),
                             Name = "Sakarya"
                         },
                         new
                         {
-                            Id = new Guid("27eaf14a-8dea-454e-ba33-bd13b1b45c54"),
+                            Id = new Guid("31c24afc-fe7c-41e1-934a-5c5038345193"),
                             CountryId = new Guid("fbaa76da-0f6b-46c7-930f-586e3bba2cf8"),
                             Name = "Samsun"
                         },
                         new
                         {
-                            Id = new Guid("61f5cf40-8c8d-4769-91c4-b4b0b287b6bd"),
+                            Id = new Guid("8866bb68-c8c2-4d5b-9fc4-7a2abea920da"),
                             CountryId = new Guid("fbaa76da-0f6b-46c7-930f-586e3bba2cf8"),
                             Name = "Şanlıurfa"
                         },
                         new
                         {
-                            Id = new Guid("64d5218b-8c68-4af2-ac5e-904a595c569b"),
+                            Id = new Guid("d85b01f8-50dd-4d19-a56d-4b0f85466433"),
                             CountryId = new Guid("fbaa76da-0f6b-46c7-930f-586e3bba2cf8"),
                             Name = "Siirt"
                         },
                         new
                         {
-                            Id = new Guid("5a5d5def-8ed7-454f-a2f0-fee36fdcf77a"),
+                            Id = new Guid("38fd4fe1-ab62-49d3-8416-3f29e4db0a59"),
                             CountryId = new Guid("fbaa76da-0f6b-46c7-930f-586e3bba2cf8"),
                             Name = "Sinop"
                         },
                         new
                         {
-                            Id = new Guid("66ac5fd9-5117-4213-b801-1708fd1f7bed"),
+                            Id = new Guid("ae05442a-5723-45cc-b9cc-ea69109b1e4e"),
                             CountryId = new Guid("fbaa76da-0f6b-46c7-930f-586e3bba2cf8"),
                             Name = "Sivas"
                         },
                         new
                         {
-                            Id = new Guid("ab4bb637-9c6b-4528-8b20-df90248632f8"),
+                            Id = new Guid("4fddfeb6-9036-477b-bd4d-bf7e24d71e8a"),
                             CountryId = new Guid("fbaa76da-0f6b-46c7-930f-586e3bba2cf8"),
                             Name = "Şırnak"
                         },
                         new
                         {
-                            Id = new Guid("a2bb2a56-2f4c-4e1a-bfad-13b270529314"),
+                            Id = new Guid("7a484df6-aa59-45da-ad4c-8d8d2fc459ae"),
                             CountryId = new Guid("fbaa76da-0f6b-46c7-930f-586e3bba2cf8"),
                             Name = "Tekirdağ"
                         },
                         new
                         {
-                            Id = new Guid("b75df8f3-816a-4f81-a631-58defbe1fed9"),
+                            Id = new Guid("4e20d997-e2a0-4725-bb83-8fb130642659"),
                             CountryId = new Guid("fbaa76da-0f6b-46c7-930f-586e3bba2cf8"),
                             Name = "Tokat"
                         },
                         new
                         {
-                            Id = new Guid("4dee908d-51ff-48c7-a981-427da16adcd4"),
+                            Id = new Guid("e0d0edc6-438a-41c8-bb9b-5e7d56b555e4"),
                             CountryId = new Guid("fbaa76da-0f6b-46c7-930f-586e3bba2cf8"),
                             Name = "Trabzon"
                         },
                         new
                         {
-                            Id = new Guid("5d2a90ab-587f-4169-91a6-4fc19054bcac"),
+                            Id = new Guid("6c0b5531-8d03-403a-9f9c-d3e618175e51"),
                             CountryId = new Guid("fbaa76da-0f6b-46c7-930f-586e3bba2cf8"),
                             Name = "Tunceli"
                         },
                         new
                         {
-                            Id = new Guid("88775666-3b0b-4a3d-aeae-4f53ddbc51f1"),
+                            Id = new Guid("6699be67-872f-4bdb-88c9-846261c8ea0b"),
                             CountryId = new Guid("fbaa76da-0f6b-46c7-930f-586e3bba2cf8"),
                             Name = "Uşak"
                         },
                         new
                         {
-                            Id = new Guid("1fa3415d-fab0-4924-821f-d749258b1927"),
+                            Id = new Guid("1efb1557-a8f2-4dd3-b43b-bbd6131adfcc"),
                             CountryId = new Guid("fbaa76da-0f6b-46c7-930f-586e3bba2cf8"),
                             Name = "Van"
                         },
                         new
                         {
-                            Id = new Guid("867b407d-5690-4919-b8c5-550ffd8801b8"),
+                            Id = new Guid("c0add994-3c3d-48ca-995d-4b5185e1f8b8"),
                             CountryId = new Guid("fbaa76da-0f6b-46c7-930f-586e3bba2cf8"),
                             Name = "Yalova"
                         },
                         new
                         {
-                            Id = new Guid("b64c35ea-750e-4e24-9270-d96a26e4bac1"),
+                            Id = new Guid("fc19f1c4-ae3b-40a0-9588-a31ef1053132"),
                             CountryId = new Guid("fbaa76da-0f6b-46c7-930f-586e3bba2cf8"),
                             Name = "Yozgat"
                         },
                         new
                         {
-                            Id = new Guid("4d5a174b-464d-4d8f-b0b8-f82e3e8dbfc4"),
+                            Id = new Guid("b60a9ea4-976d-47c1-95f2-37497c43a645"),
                             CountryId = new Guid("fbaa76da-0f6b-46c7-930f-586e3bba2cf8"),
                             Name = "Zonguldak"
                         });

@@ -5,5 +5,5 @@ namespace JobSearch.Domain.Entities.Institution;
 public class Sector : EntityBase
 {
     public string Name { get; set; }
-    public ICollection<Company> Companies { get; set; }
+    public virtual ICollection<Company> Companies { get; set; }
 }
