@@ -9,6 +9,17 @@ namespace JobSearch.Infrastructure.Services.JobPost;
 
 public class JobService(IJobRepository repository, IUserRepository userRepository, IMapper mapper) : IJobService
 {
+    public async Task<ICollection<Job>?> GetByKeyword(string keyword, string location)
+    {
+        ArgumentException.ThrowIfNullOrEmpty(keyword, nameof(keyword));
+        ArgumentException.ThrowIfNullOrEmpty(location, nameof(location));
+
+        return await repository.GetAllAsync(x =>
+            x.Company.Address.FullAddress != null &&
+            x.Title.ToLower().Contains(keyword.ToLower()) &&
+            x.Company.Address.FullAddress.ToLower().Contains(location.ToLower()));
+    }
+
     public async Task<bool> CreateAsync(Guid userId, JobCreateDto jobCreateDto)
     {
         var user = await userRepository.FindByIdAsync(userId);

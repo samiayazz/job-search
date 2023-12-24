@@ -29,19 +29,32 @@ public class IdentityUserService(
         return user;
     }
 
-    public async Task<bool> CreateAsync(UserCreateDto userCreateDto, string role)
+    public async Task<bool> CreateAsync(UserModifyDto userModifyDto, string role)
     {
-        ArgumentNullException.ThrowIfNull(userCreateDto, nameof(userCreateDto));
+        ArgumentNullException.ThrowIfNull(userModifyDto, nameof(userModifyDto));
 
         Guid? roleId = roleManager.Roles.SingleOrDefault(x => x.Name.ToLower() == role.ToLower())?.Id;
         if (roleId == null)
             throw new Exception("'Role' parametresi sadece; 'Worker', 'Recruiter' ve 'Founder' değerlerini alabilir.");
 
-        var mappedUser = mapper.Map<AppUser>(userCreateDto);
+        var mappedUser = mapper.Map<AppUser>(userModifyDto);
         mappedUser.RoleId = roleId.Value;
-        mappedUser.PasswordHash = encryptionHelper.HashPassword(mappedUser, userCreateDto.Password);
+        mappedUser.PasswordHash = encryptionHelper.HashPassword(mappedUser, userModifyDto.Password);
 
         return await repository.CreateAsync(mappedUser);
+    }
+
+    public async Task<bool> UpdateAsync(Guid userId, UserModifyDto userModifyDto)
+    {
+        var user = await repository.FindByIdAsync(userId);
+        ArgumentNullException.ThrowIfNull(user, nameof(user));
+        ArgumentNullException.ThrowIfNull(userModifyDto, nameof(userModifyDto));
+
+        var mappedUser = mapper.Map(userModifyDto, user);
+        // Todo: set UpdatedDate
+        mappedUser.PasswordHash = encryptionHelper.HashPassword(mappedUser, userModifyDto.Password);
+
+        return await repository.UpdateAsync(mappedUser);
     }
 
     public async Task<bool> RemoveByIdAsync(Guid id)

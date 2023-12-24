@@ -1,6 +1,6 @@
 ﻿namespace JobSearch.Application.DTOs.Identity;
 
-public class UserCreateDto(
+public class UserModifyDto(
     string userName,
     string email,
     string password,

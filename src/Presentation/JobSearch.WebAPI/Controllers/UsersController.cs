@@ -11,11 +11,24 @@ namespace JobSearch.WebAPI.Controllers
     public class UsersController(IUserService userService, UserHelper userHelper) : ControllerBase
     {
         [HttpPost("create/{role}", Name = "CreateUser")]
-        public async Task<IActionResult> CreateAsync([FromBody] UserCreateDto user, [FromRoute] string role = "worker")
+        public async Task<IActionResult> CreateAsync([FromBody] UserModifyDto user, [FromRoute] string role = "worker")
         {
             var result = await userService.CreateAsync(user, role);
             if (!result)
                 return Problem("Kullanıcı oluşturulurken bir hata oluştu.");
+
+            return Ok();
+        }
+
+        [Authorize]
+        [HttpPost("update", Name = "UpdateUser")]
+        public async Task<IActionResult> UpdateAsync([FromBody] UserModifyDto userModifyDto)
+        {
+            var user = userHelper.ResolveUserInToken();
+
+            var result = await userService.UpdateAsync(user.Id, userModifyDto);
+            if (!result)
+                return Problem("Kullanıcı güncellenirken bir hata oluştu.");
 
             return Ok();
         }

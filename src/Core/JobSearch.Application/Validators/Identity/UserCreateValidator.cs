@@ -3,7 +3,7 @@ using JobSearch.Application.DTOs.Identity;
 
 namespace JobSearch.Application.Validators.Identity;
 
-public class UserCreateValidator : AbstractValidator<UserCreateDto>
+public class UserCreateValidator : AbstractValidator<UserModifyDto>
 {
     public UserCreateValidator()
     {
