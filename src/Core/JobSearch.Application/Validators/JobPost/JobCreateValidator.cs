@@ -1,7 +1,5 @@
 ﻿using FluentValidation;
 using JobSearch.Application.DTOs.JobPost;
-using JobSearch.Application.Validators.Common;
-using JobSearch.Domain.Entities.JobPost;
 
 namespace JobSearch.Application.Validators.JobPost;
 

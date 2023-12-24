@@ -1,11 +1,17 @@
 ﻿namespace JobSearch.Application.DTOs.Identity;
 
-public class UserCreateDto
+public class UserCreateDto(
+    string userName,
+    string email,
+    string password,
+    string phoneNumber,
+    string firstName,
+    string lastName)
 {
-    public string UserName { get; set; }
-    public string Email { get; set; }
-    public string Password { get; set; }
-    public string PhoneNumber { get; set; }
-    public string FirstName { get; set; }
-    public string LastName { get; set; }
+    public string UserName { get; init; } = userName;
+    public string Email { get; init; } = email;
+    public string Password { get; init; } = password;
+    public string PhoneNumber { get; init; } = phoneNumber;
+    public string FirstName { get; init; } = firstName;
+    public string LastName { get; init; } = lastName;
 }

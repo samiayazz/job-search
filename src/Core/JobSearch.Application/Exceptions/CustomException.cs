@@ -2,7 +2,7 @@
 
 public class CustomException : Exception
 {
-    public CustomException() : base("An unexpected error has occurred!")
+    public CustomException() : base("Beklenmeyen bir hata oluştu!")
     {
     }
 

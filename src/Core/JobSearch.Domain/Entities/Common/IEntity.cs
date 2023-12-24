@@ -1,4 +1,4 @@
-﻿namespace JobSearch.Application.Contracts.Domain;
+﻿namespace JobSearch.Domain.Entities.Common;
 
 public interface IEntity
 {

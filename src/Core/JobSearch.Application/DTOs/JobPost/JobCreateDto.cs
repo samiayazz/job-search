@@ -1,14 +1,23 @@
 ﻿namespace JobSearch.Application.DTOs.JobPost;
 
-public class JobCreateDto
+public class JobCreateDto(
+    string title,
+    string position,
+    byte yearsOfExperience,
+    string description,
+    string criteria,
+    Guid companyId,
+    Guid departmentId,
+    Guid workTypeId,
+    Guid workModelId)
 {
-    public string Title { get; set; }
-    public string Position { get; set; }
-    public byte YearsOfExperience { get; set; }
-    public string Description { get; set; }
-    public string Criteria { get; set; }
-    public Guid CompanyId { get; set; }
-    public Guid DepartmentId { get; set; }
-    public Guid WorkTypeId { get; set; }
-    public Guid WorkModelId { get; set; }
+    public string Title { get; init; } = title;
+    public string Position { get; init; } = position;
+    public byte YearsOfExperience { get; init; } = yearsOfExperience;
+    public string Description { get; init; } = description;
+    public string Criteria { get; init; } = criteria;
+    public Guid CompanyId { get; init; } = companyId;
+    public Guid DepartmentId { get; init; } = departmentId;
+    public Guid WorkTypeId { get; init; } = workTypeId;
+    public Guid WorkModelId { get; init; } = workModelId;
 }

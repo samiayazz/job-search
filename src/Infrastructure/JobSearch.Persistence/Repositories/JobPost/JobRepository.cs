@@ -1,5 +1,4 @@
-﻿using JobSearch.Application.Contracts.Persistence.Repositories;
-using JobSearch.Application.Contracts.Persistence.Repositories.JobPost;
+﻿using JobSearch.Application.Contracts.Persistence.Repositories.JobPost;
 using JobSearch.Domain.Entities.JobPost;
 using JobSearch.Persistence.Contexts;
 using JobSearch.Persistence.Repositories.Common;

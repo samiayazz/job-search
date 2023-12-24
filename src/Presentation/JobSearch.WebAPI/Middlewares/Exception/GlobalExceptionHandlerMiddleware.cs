@@ -37,9 +37,9 @@ public class GlobalExceptionHandlerMiddleware
                     break;
             }
 
-            var response = new GeneralResponse<string>();
+            var response = new ApiResponse<string>();
             response.Success = false;
-            response.Message = $"An exception has occurred! Details: '{exception.Message}'";
+            response.Message = $"Beklenmeyen bir hata oluştu! Detay: '{exception.Message}'";
             await context.Response.WriteAsJsonAsync(response);
         }
     }

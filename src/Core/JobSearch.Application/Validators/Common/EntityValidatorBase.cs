@@ -1,5 +1,4 @@
 ﻿using FluentValidation;
-using JobSearch.Application.Contracts.Domain;
 using JobSearch.Domain.Entities.Common;
 
 namespace JobSearch.Application.Validators.Common;

@@ -5,5 +5,5 @@ namespace JobSearch.Application.Contracts.Persistence.Repositories.User;
 
 public interface IUserRepository : IRepository<AppUser, Guid>
 {
-    public Task<AppUser> GetByUserNameOrEmailAsync(string userNameOrEmail);
+    public Task<AppUser?> FindByUserNameOrEmailAsync(string userNameOrEmail);
 }

@@ -12,8 +12,7 @@ public class UserRepository : RepositoryBase<AppUser, Guid>, IUserRepository
     {
     }
 
-    public async Task<AppUser> GetByUserNameOrEmailAsync(string userNameOrEmail)
-        => await _table
-            .Where(x => x.UserName == userNameOrEmail || x.Email == userNameOrEmail)
-            .FirstOrDefaultAsync();
+    public async Task<AppUser?> FindByUserNameOrEmailAsync(string userNameOrEmail)
+        => await Table
+            .SingleOrDefaultAsync(x => x.UserName == userNameOrEmail || x.Email == userNameOrEmail);
 }

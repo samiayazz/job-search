@@ -1,6 +1,5 @@
 ﻿using FluentValidation;
 using JobSearch.Application.DTOs.Identity;
-using JobSearch.Domain.Entities.Identity;
 
 namespace JobSearch.Application.Validators.Identity;
 

@@ -1,5 +1,4 @@
-﻿using JobSearch.Domain.Entities.Institution;
-using JobSearch.Domain.Entities.Location;
+﻿using JobSearch.Domain.Entities.Location;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 

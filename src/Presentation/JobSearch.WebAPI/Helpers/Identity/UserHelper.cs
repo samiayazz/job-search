@@ -1,27 +1,19 @@
 ﻿using System.Security.Claims;
+using JobSearch.Application.Contracts.Infrastructure.Services;
 using JobSearch.Domain.Entities.Identity;
-using Microsoft.AspNetCore.Identity;
 
 namespace JobSearch.WebAPI.Helpers.Identity;
 
-public class UserHelper
+public class UserHelper(IHttpContextAccessor httpContextAccessor, IUserService userService)
 {
-    private readonly IHttpContextAccessor _httpContextAccessor;
-    private readonly UserManager<AppUser> _userManager;
-
-    public UserHelper(IHttpContextAccessor httpContextAccessor, UserManager<AppUser> userManager)
-        => (_httpContextAccessor, _userManager) = (httpContextAccessor, userManager);
-
     public AppUser ResolveUserInToken()
     {
-        Guid userId = Guid.Empty;
-        if (!Guid.TryParse(_httpContextAccessor?.HttpContext?.User?.FindFirst(ClaimTypes.NameIdentifier)?.Value,
-                out userId))
-            throw new Exception("Token'daki User'in Id bilgisi çözümlenirken bir hata oluştu.");
+        if (!Guid.TryParse(httpContextAccessor.HttpContext?.User.FindFirst(ClaimTypes.NameIdentifier)?.Value,
+                out var userId))
+            throw new Exception("Token'dan User'in Id bilgisi çözümlenirken bir hata oluştu.");
 
-        var user = _userManager.Users.Where(x => x.Id == userId).FirstOrDefault();
-        if (user == null)
-            throw new Exception("Token'daki User bilgisi çözümlenirken bir hata oluştu.");
+        var user = userService.FindByIdAsync(userId).Result;
+        ArgumentNullException.ThrowIfNull(user, nameof(user));
 
         return user;
     }

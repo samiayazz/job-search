@@ -1,12 +1,8 @@
 ﻿using JobSearch.WebAPI.Middlewares.Exception;
-using JobSearch.WebAPI.Models.Responses;
-using Microsoft.AspNetCore.Diagnostics;
-using System.Net;
-using System.Net.Mime;
 
 namespace JobSearch.WebAPI.Extensions.WebAppBuilder;
 
-public static class ConfigureExceptionHandlerExtension
+public static class ConfigureExceptionHandlerServicesExtension
 {
     public static void UseGlobalExceptionHandler(this IApplicationBuilder app)
     {

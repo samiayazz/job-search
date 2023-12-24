@@ -6,22 +6,20 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace JobSearch.WebAPI.Controllers;
 
-[Authorize(Roles = "Recruiter")]
 [Route("api/[controller]")]
 [ApiController]
 public class JobsController(IJobService service, UserHelper userHelper) : ControllerBase
 {
-    private readonly IJobService _service = service;
-    private readonly UserHelper _userHelper = userHelper;
-
+    [Authorize(Roles = "Recruiter,Founder")]
     [HttpPost("create", Name = "CreateJob")]
     public async Task<IActionResult> CreateAsync([FromBody] JobCreateDto job)
     {
-        var user = _userHelper.ResolveUserInToken();
+        var user = userHelper.ResolveUserInToken();
 
-        if (await _service.CreateAsync(user.Id, job))
-            return Ok();
-        else
+        var result = await service.CreateAsync(user.Id, job);
+        if (!result)
             return Problem();
+
+        return Ok();
     }
 }

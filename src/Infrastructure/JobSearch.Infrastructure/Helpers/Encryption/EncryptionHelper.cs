@@ -1,6 +1,4 @@
-﻿using System.Security.Cryptography;
-using System.Text;
-using JobSearch.Domain.Entities.Identity;
+﻿using JobSearch.Domain.Entities.Identity;
 using Microsoft.AspNetCore.Identity;
 
 namespace JobSearch.Infrastructure.Helpers.Encryption;

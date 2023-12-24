@@ -6,9 +6,9 @@ public interface IRepository<TEntity, TKey>
     where TEntity : class, new()
     where TKey : struct
 {
-    public Task<ICollection<TEntity>> GetAllAsync(Expression<Func<TEntity, bool>> predicate = null);
-    public Task<TEntity> GetSingleAsync(Expression<Func<TEntity, bool>> predicate);
-    public Task<TEntity> GetByIdAsync(TKey id);
+    public Task<ICollection<TEntity>?> GetAllAsync(Expression<Func<TEntity, bool>> predicate = null);
+    public Task<TEntity?> GetSingleAsync(Expression<Func<TEntity, bool>> predicate);
+    public Task<TEntity?> FindByIdAsync(TKey id);
     public Task<bool> CreateAsync(TEntity entity);
     public Task<bool> CreateRangeAsync(ICollection<TEntity> entities);
     public Task<bool> UpdateAsync(TEntity entity);

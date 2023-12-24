@@ -1,6 +1,6 @@
 ﻿namespace JobSearch.WebAPI.Models.Responses;
 
-public class GeneralResponse<T>
+public class ApiResponse<T>
 {
     public T Data { get; set; } = default(T);
     public bool Success { get; set; } = true;
