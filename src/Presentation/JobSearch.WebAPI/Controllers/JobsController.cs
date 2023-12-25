@@ -11,8 +11,9 @@ namespace JobSearch.WebAPI.Controllers;
 public class JobsController(IJobService service, UserHelper userHelper) : ControllerBase
 {
     [HttpGet("{keyword}", Name = "GetJobsByKeyword")]
-    public async Task<IActionResult> GetByKeyword([FromRoute] string keyword, [FromQuery] string location)
-        => Ok(await service.GetByKeyword(keyword, location));
+    public async Task<IActionResult> GetByKeyword([FromRoute] string keyword, [FromQuery] string location,
+        [FromQuery] string? department = null, [FromQuery] string? workType = null, [FromQuery] string? workModel = null)
+        => Ok(await service.GetByKeywordAndLocation(keyword, location, department, workType, workModel));
 
     [Authorize(Roles = "Recruiter,Founder")]
     [HttpPost("create", Name = "CreateJob")]
