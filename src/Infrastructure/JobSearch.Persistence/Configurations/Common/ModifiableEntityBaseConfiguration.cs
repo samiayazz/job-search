@@ -2,21 +2,22 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace JobSearch.Persistence.Configurations.Common;
-
-public class ModifiableEntityBaseConfiguration : IEntityTypeConfiguration<ModifiableEntityBase>
+namespace JobSearch.Persistence.Configurations.Common
 {
-    public void Configure(EntityTypeBuilder<ModifiableEntityBase> builder)
+    public class ModifiableEntityBaseConfiguration : IEntityTypeConfiguration<ModifiableEntityBase>
     {
-        // CreatedDate
-        builder.Property(x => x.CreatedDate)
-            .HasDefaultValue(DateTime.UtcNow)
-            .IsRequired();
+        public void Configure(EntityTypeBuilder<ModifiableEntityBase> builder)
+        {
+            // CreatedDate
+            builder.Property(x => x.CreatedDate)
+                .HasDefaultValue(DateTime.UtcNow)
+                .IsRequired();
 
-        // CreatedBy
-        builder.Property(x => x.CreatedById)
-            .IsRequired();
+            // CreatedBy
+            builder.Property(x => x.CreatedById)
+                .IsRequired();
 
-        // Todo: Add an interceptor for auto setting 'CreatedBy and CreatedById' props.
+            // Todo: Add an interceptor for auto setting 'CreatedBy and CreatedById' props.
+        }
     }
 }

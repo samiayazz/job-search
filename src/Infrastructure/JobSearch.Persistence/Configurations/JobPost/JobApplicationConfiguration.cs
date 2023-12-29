@@ -2,45 +2,46 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace JobSearch.Persistence.Configurations.JobPost;
-
-internal class JobApplicationConfiguration : IEntityTypeConfiguration<JobApplication>
+namespace JobSearch.Persistence.Configurations.JobPost
 {
-    private EntityTypeBuilder<JobApplication> _builder;
-
-    public void Configure(EntityTypeBuilder<JobApplication> builder)
+    internal class JobApplicationConfiguration : IEntityTypeConfiguration<JobApplication>
     {
-        _builder = builder;
+        private EntityTypeBuilder<JobApplication> _builder;
 
-        ConfigureRelationships();
+        public void Configure(EntityTypeBuilder<JobApplication> builder)
+        {
+            _builder = builder;
 
-        // Description
-        _builder.Property(x => x.Description)
-            .HasMaxLength(150)
-            .IsRequired(false);
+            ConfigureRelationships();
 
-        // SalaryExpection
-        _builder.Property(x => x.SalaryExpection)
-            .HasPrecision(10, 2)
-            .HasDefaultValue(0)
-            .IsRequired();
+            // Description
+            _builder.Property(x => x.Description)
+                .HasMaxLength(150)
+                .IsRequired(false);
 
-        // PeriodOfNotice
-        _builder.Property(x => x.PeriodOfNotice)
-            .HasDefaultValue(0)
-            .IsRequired();
-    }
+            // SalaryExpection
+            _builder.Property(x => x.SalaryExpection)
+                .HasPrecision(10, 2)
+                .HasDefaultValue(0)
+                .IsRequired();
 
-    private void ConfigureRelationships()
-    {
-        // Has One Job
-        _builder.HasOne(app => app.Job)
-            .WithMany(job => job.JobApplications)
-            .HasForeignKey(app => app.JobId);
+            // PeriodOfNotice
+            _builder.Property(x => x.PeriodOfNotice)
+                .HasDefaultValue(0)
+                .IsRequired();
+        }
 
-        // Has One Applicant
-        _builder.HasOne(app => app.Applicant)
-            .WithMany(applicant => applicant.JobApplications)
-            .HasForeignKey(app => app.ApplicantId);
+        private void ConfigureRelationships()
+        {
+            // Has One Job
+            _builder.HasOne(app => app.Job)
+                .WithMany(job => job.JobApplications)
+                .HasForeignKey(app => app.JobId);
+
+            // Has One Applicant
+            _builder.HasOne(app => app.Applicant)
+                .WithMany(applicant => applicant.JobApplications)
+                .HasForeignKey(app => app.ApplicantId);
+        }
     }
 }

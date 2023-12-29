@@ -1,13 +1,14 @@
 ﻿using System.Reflection;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace JobSearch.Application.Extensions.WebAppBuilder;
-
-public static class ConfigureApplicationServices
+namespace JobSearch.Application.Extensions.WebAppBuilder
 {
-    public static void AddApplicationServices(this IServiceCollection services)
+    public static class ConfigureApplicationServices
     {
-        var assembly = Assembly.GetExecutingAssembly();
-        services.AddAutoMapper(assembly);
+        public static void AddApplicationServices(this IServiceCollection services)
+        {
+            var assembly = Assembly.GetExecutingAssembly();
+            services.AddAutoMapper(assembly);
+        }
     }
 }

@@ -1,46 +1,49 @@
 ﻿using System.Net;
-using JobSearch.WebAPI.Models.Responses;
-using JobSearch.Application.Exceptions;
 using System.Net.Mime;
+using JobSearch.Application.Exceptions;
+using JobSearch.WebAPI.Models.Responses;
 
-namespace JobSearch.WebAPI.Middlewares.Exception;
-
-public class GlobalExceptionHandlerMiddleware
+namespace JobSearch.WebAPI.Middlewares.Exception
 {
-    private readonly RequestDelegate _next;
-
-    public GlobalExceptionHandlerMiddleware(RequestDelegate next)
-        => _next = next;
-
-    public async Task InvokeAsync(HttpContext context)
+    public class GlobalExceptionHandlerMiddleware
     {
-        try
-        {
-            await _next(context);
-        }
-        catch (System.Exception exception)
-        {
-            context.Response.ContentType = MediaTypeNames.Application.Json;
-            switch (exception)
-            {
-                case CustomException:
-                    // Custom Exception
-                    context.Response.StatusCode = (int)HttpStatusCode.BadRequest;
-                    break;
-                case KeyNotFoundException:
-                    // Not Found Exception
-                    context.Response.StatusCode = (int)HttpStatusCode.NotFound;
-                    break;
-                default:
-                    // Unhandled Exception
-                    context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
-                    break;
-            }
+        private readonly RequestDelegate _next;
 
-            var response = new ApiResponse<string>();
-            response.Success = false;
-            response.Message = $"Beklenmeyen bir hata oluştu! Detay: '{exception.Message}'";
-            await context.Response.WriteAsJsonAsync(response);
+        public GlobalExceptionHandlerMiddleware(RequestDelegate next)
+        {
+            _next = next;
+        }
+
+        public async Task InvokeAsync(HttpContext context)
+        {
+            try
+            {
+                await _next(context);
+            }
+            catch (System.Exception exception)
+            {
+                context.Response.ContentType = MediaTypeNames.Application.Json;
+                switch (exception)
+                {
+                    case CustomException:
+                        // Custom Exception
+                        context.Response.StatusCode = (int)HttpStatusCode.BadRequest;
+                        break;
+                    case KeyNotFoundException:
+                        // Not Found Exception
+                        context.Response.StatusCode = (int)HttpStatusCode.NotFound;
+                        break;
+                    default:
+                        // Unhandled Exception
+                        context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
+                        break;
+                }
+
+                var response = new ApiResponse<string>();
+                response.Success = false;
+                response.Message = $"Beklenmeyen bir hata oluştu! Detay: '{exception.Message}'";
+                await context.Response.WriteAsJsonAsync(response);
+            }
         }
     }
 }

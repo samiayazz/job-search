@@ -1,6 +1,7 @@
-﻿namespace JobSearch.Domain.Entities.Common;
-
-public abstract class EntityBase : IEntity
+﻿namespace JobSearch.Domain.Entities.Common
 {
-    public Guid Id { get; set; } = Guid.NewGuid();
+    public abstract class EntityBase : IEntity
+    {
+        public Guid Id { get; set; } = Guid.NewGuid();
+    }
 }

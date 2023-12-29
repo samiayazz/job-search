@@ -2,62 +2,63 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace JobSearch.Persistence.Configurations.Institution;
-
-public class CompanyConfiguration : IEntityTypeConfiguration<Company>
+namespace JobSearch.Persistence.Configurations.Institution
 {
-    private EntityTypeBuilder<Company> _builder;
-
-    public void Configure(EntityTypeBuilder<Company> builder)
+    public class CompanyConfiguration : IEntityTypeConfiguration<Company>
     {
-        _builder = builder;
+        private EntityTypeBuilder<Company> _builder;
 
-        ConfigureRelationships();
+        public void Configure(EntityTypeBuilder<Company> builder)
+        {
+            _builder = builder;
 
-        // Name
-        _builder.Property(x => x.Name)
-            .HasMaxLength(50)
-            .IsRequired();
+            ConfigureRelationships();
 
-        // Description
-        _builder.Property(x => x.Description)
-            .HasMaxLength(500)
-            .IsRequired(false);
-    }
+            // Name
+            _builder.Property(x => x.Name)
+                .HasMaxLength(50)
+                .IsRequired();
 
-    private void ConfigureRelationships()
-    {
-        // Has One Creator
-        _builder.HasOne(company => company.CreatedBy)
-            .WithOne(user => user.Company)
-            .HasForeignKey<Company>(company => company.CreatedById);
+            // Description
+            _builder.Property(x => x.Description)
+                .HasMaxLength(500)
+                .IsRequired(false);
+        }
 
-        // Has One Sector
-        _builder.HasOne(company => company.Sector)
-            .WithMany(sector => sector.Companies)
-            .HasForeignKey(company => company.SectorId);
+        private void ConfigureRelationships()
+        {
+            // Has One Creator
+            _builder.HasOne(company => company.CreatedBy)
+                .WithOne(user => user.Company)
+                .HasForeignKey<Company>(company => company.CreatedById);
 
-        // Has One Address
-        _builder.HasOne(company => company.Address)
-            .WithOne(address => address.Company)
-            .HasForeignKey<Company>(company => company.AddressId);
+            // Has One Sector
+            _builder.HasOne(company => company.Sector)
+                .WithMany(sector => sector.Companies)
+                .HasForeignKey(company => company.SectorId);
 
-        // Has Many Jobs
-        _builder.HasMany(company => company.Jobs)
-            .WithOne(job => job.Company)
-            .HasForeignKey(job => job.CompanyId)
-            .OnDelete(DeleteBehavior.Cascade);
+            // Has One Address
+            _builder.HasOne(company => company.Address)
+                .WithOne(address => address.Company)
+                .HasForeignKey<Company>(company => company.AddressId);
 
-        /*// Has One Updater Optional
-        _builder.HasOne(company => company.UpdatedBy)
-            .WithOne(user => user.Company)
-            .HasForeignKey<Company>(company => company.CreatedById)
-            .IsRequired(false);
+            // Has Many Jobs
+            _builder.HasMany(company => company.Jobs)
+                .WithOne(job => job.Company)
+                .HasForeignKey(job => job.CompanyId)
+                .OnDelete(DeleteBehavior.Cascade);
 
-        // Has One Remover Optional
-        _builder.HasOne(company => company.DeletedBy)
-            .WithOne(user => user.Company)
-            .HasForeignKey<Company>(company => company.CreatedById)
-            .IsRequired(false);*/
+            /*// Has One Updater Optional
+            _builder.HasOne(company => company.UpdatedBy)
+                .WithOne(user => user.Company)
+                .HasForeignKey<Company>(company => company.CreatedById)
+                .IsRequired(false);
+
+            // Has One Remover Optional
+            _builder.HasOne(company => company.DeletedBy)
+                .WithOne(user => user.Company)
+                .HasForeignKey<Company>(company => company.CreatedById)
+                .IsRequired(false);*/
+        }
     }
 }

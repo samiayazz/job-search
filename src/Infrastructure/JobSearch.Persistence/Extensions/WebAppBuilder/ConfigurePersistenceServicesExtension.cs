@@ -8,20 +8,21 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace JobSearch.Persistence.Extensions.WebAppBuilder;
-
-public static class ConfigurePersistenceServicesExtension
+namespace JobSearch.Persistence.Extensions.WebAppBuilder
 {
-    public static void AddPersistenceServices(this IServiceCollection services,
-        IConfiguration config)
+    public static class ConfigurePersistenceServicesExtension
     {
-        services.AddDbContext<JobSearchDbContext>(options
-            => options.UseNpgsql(config.GetConnectionString("JobSearchPgSql")));
+        public static void AddPersistenceServices(this IServiceCollection services,
+            IConfiguration config)
+        {
+            services.AddDbContext<JobSearchDbContext>(options
+                => options.UseNpgsql(config.GetConnectionString("JobSearchPgSql")));
 
-        services.AddIdentity<AppUser, AppRole>()
-            .AddEntityFrameworkStores<JobSearchDbContext>();
+            services.AddIdentity<AppUser, AppRole>()
+                .AddEntityFrameworkStores<JobSearchDbContext>();
 
-        services.AddScoped<IJobRepository, JobRepository>();
-        services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<IJobRepository, JobRepository>();
+            services.AddScoped<IUserRepository, UserRepository>();
+        }
     }
 }

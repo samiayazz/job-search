@@ -1,13 +1,14 @@
 ﻿using JobSearch.Domain.Entities.Identity;
 using Microsoft.AspNetCore.Identity;
 
-namespace JobSearch.Infrastructure.Helpers.Encryption;
-
-public class EncryptionHelper
+namespace JobSearch.Infrastructure.Helpers.Encryption
 {
-    public string HashPassword(AppUser user, string password)
+    public class EncryptionHelper
     {
-        var hasher = new PasswordHasher<AppUser>();
-        return hasher.HashPassword(user, password);
+        public string HashPassword(AppUser user, string password)
+        {
+            var hasher = new PasswordHasher<AppUser>();
+            return hasher.HashPassword(user, password);
+        }
     }
 }

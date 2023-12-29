@@ -1,6 +1,7 @@
-﻿namespace JobSearch.Domain.Entities.Common;
-
-public interface IEntity
+﻿namespace JobSearch.Domain.Entities.Common
 {
-    public Guid Id { get; set; }
+    public interface IEntity
+    {
+        public Guid Id { get; set; }
+    }
 }

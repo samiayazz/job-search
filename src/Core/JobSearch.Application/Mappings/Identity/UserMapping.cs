@@ -2,12 +2,13 @@
 using JobSearch.Application.DTOs.Identity;
 using JobSearch.Domain.Entities.Identity;
 
-namespace JobSearch.Application.Mappings.Identity;
-
-public class UserMapping : Profile
+namespace JobSearch.Application.Mappings.Identity
 {
-    public UserMapping()
+    public class UserMapping : Profile
     {
-        CreateMap<AppUser, UserModifyDto>().ReverseMap();
+        public UserMapping()
+        {
+            CreateMap<AppUser, UserModifyDto>().ReverseMap();
+        }
     }
 }

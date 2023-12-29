@@ -3,11 +3,12 @@ using JobSearch.Domain.Entities.JobPost;
 using JobSearch.Persistence.Contexts;
 using JobSearch.Persistence.Repositories.Common;
 
-namespace JobSearch.Persistence.Repositories.JobPost;
-
-public class JobRepository : RepositoryBase<Job, Guid>, IJobRepository
+namespace JobSearch.Persistence.Repositories.JobPost
 {
-    public JobRepository(JobSearchDbContext dbContext) : base(dbContext)
+    public class JobRepository : RepositoryBase<Job, Guid>, IJobRepository
     {
+        public JobRepository(JobSearchDbContext dbContext) : base(dbContext)
+        {
+        }
     }
 }

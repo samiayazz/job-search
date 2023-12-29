@@ -49,7 +49,7 @@ namespace JobSearch.WebAPI.Controllers
         [HttpGet("token", Name = "GetToken")]
         public async Task<IActionResult> GetTokenAsync([FromQuery] string userNameOrEmail, [FromQuery] string password)
         {
-            string token = await userService.GetTokenAsync(userNameOrEmail, password);
+            var token = await userService.GetTokenAsync(userNameOrEmail, password);
             if (string.IsNullOrEmpty(token))
                 return Problem("Token oluşturulurken bir hata oluştu.");
 

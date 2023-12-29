@@ -2,43 +2,44 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace JobSearch.Persistence.Configurations.JobPost;
-
-public class DepartmentConfiguration : IEntityTypeConfiguration<Department>
+namespace JobSearch.Persistence.Configurations.JobPost
 {
-    private EntityTypeBuilder<Department> _builder;
-
-    public void Configure(EntityTypeBuilder<Department> builder)
+    public class DepartmentConfiguration : IEntityTypeConfiguration<Department>
     {
-        _builder = builder;
+        private EntityTypeBuilder<Department> _builder;
 
-        ConfigureRelationships();
-
-        // Name
-        _builder.Property(x => x.Name)
-            .HasMaxLength(50)
-            .IsRequired();
-
-        SeedData();
-    }
-
-    private void ConfigureRelationships()
-    {
-        // Has Many Jobs
-        _builder.HasMany(department => department.Jobs)
-            .WithOne(job => job.Department)
-            .HasForeignKey(job => job.DepartmentId);
-    }
-
-    private void SeedData()
-    {
-        _builder.HasData(new List<Department>()
+        public void Configure(EntityTypeBuilder<Department> builder)
         {
-            new()
+            _builder = builder;
+
+            ConfigureRelationships();
+
+            // Name
+            _builder.Property(x => x.Name)
+                .HasMaxLength(50)
+                .IsRequired();
+
+            SeedData();
+        }
+
+        private void ConfigureRelationships()
+        {
+            // Has Many Jobs
+            _builder.HasMany(department => department.Jobs)
+                .WithOne(job => job.Department)
+                .HasForeignKey(job => job.DepartmentId);
+        }
+
+        private void SeedData()
+        {
+            _builder.HasData(new List<Department>
             {
-                Id = Guid.Parse("8AAF619E-E69E-4178-B5E0-04344D04B429"),
-                Name = "Software Development"
-            }
-        });
+                new()
+                {
+                    Id = Guid.Parse("8AAF619E-E69E-4178-B5E0-04344D04B429"),
+                    Name = "Software Development"
+                }
+            });
+        }
     }
 }

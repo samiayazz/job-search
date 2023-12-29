@@ -11,90 +11,94 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 
-namespace JobSearch.Infrastructure.Services.User;
-
-public class IdentityUserService(
-    IUserRepository repository,
-    SignInManager<AppUser> signInManager,
-    RoleManager<AppRole> roleManager,
-    IMapper mapper,
-    IConfiguration config,
-    EncryptionHelper encryptionHelper) : IUserService
+namespace JobSearch.Infrastructure.Services.User
 {
-    public async Task<AppUser> FindByIdAsync(Guid id)
+    public class IdentityUserService(
+        IUserRepository repository,
+        SignInManager<AppUser> signInManager,
+        RoleManager<AppRole> roleManager,
+        IMapper mapper,
+        IConfiguration config,
+        EncryptionHelper encryptionHelper) : IUserService
     {
-        var user = await repository.FindByIdAsync(id);
-        ArgumentNullException.ThrowIfNull(user, nameof(user));
-
-        return user;
-    }
-
-    public async Task<bool> CreateAsync(UserModifyDto userModifyDto, string role)
-    {
-        ArgumentNullException.ThrowIfNull(userModifyDto, nameof(userModifyDto));
-
-        Guid? roleId = roleManager.Roles.SingleOrDefault(x => x.Name.ToLower() == role.ToLower())?.Id;
-        if (roleId == null)
-            throw new Exception("'Role' parametresi sadece; 'Worker', 'Recruiter' ve 'Founder' değerlerini alabilir.");
-
-        var mappedUser = mapper.Map<AppUser>(userModifyDto);
-        mappedUser.RoleId = roleId.Value;
-        mappedUser.PasswordHash = encryptionHelper.HashPassword(mappedUser, userModifyDto.Password);
-
-        return await repository.CreateAsync(mappedUser);
-    }
-
-    public async Task<bool> UpdateAsync(Guid userId, UserModifyDto userModifyDto)
-    {
-        var user = await repository.FindByIdAsync(userId);
-        ArgumentNullException.ThrowIfNull(user, nameof(user));
-        ArgumentNullException.ThrowIfNull(userModifyDto, nameof(userModifyDto));
-
-        var mappedUser = mapper.Map(userModifyDto, user);
-        // Todo: set UpdatedDate
-        mappedUser.PasswordHash = encryptionHelper.HashPassword(mappedUser, userModifyDto.Password);
-
-        return await repository.UpdateAsync(mappedUser);
-    }
-
-    public async Task<bool> RemoveByIdAsync(Guid id)
-        => await repository.RemoveByIdAsync(id);
-
-    public async Task<string> GetTokenAsync(string userNameOrEmail, string password)
-    {
-        var user = await repository.FindByUserNameOrEmailAsync(userNameOrEmail);
-        ArgumentNullException.ThrowIfNull(user, nameof(user));
-
-        var result = await signInManager.CheckPasswordSignInAsync(user, password, false);
-        if (!result.Succeeded)
-            throw new Exception(
-                "Girilen kullanıcı adı veya email ve parola bilgileri ile eşleşen bir kullanıcı bulunamadı.");
-
-        return this.CreateJwtToken(user);
-    }
-
-    private string CreateJwtToken(AppUser user)
-    {
-        var claims = new List<Claim>()
+        public async Task<AppUser> FindByIdAsync(Guid id)
         {
-            new(ClaimTypes.NameIdentifier, user.Id.ToString()),
-            new(ClaimTypes.Name, user.UserName),
-            new(ClaimTypes.Role, user.Role.Name)
-        };
+            var user = await repository.FindByIdAsync(id);
+            ArgumentNullException.ThrowIfNull(user, nameof(user));
 
-        var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(config["JwtToken:SecurityKey"]!));
-        var signingCredentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
+            return user;
+        }
 
-        var lifeTime = DateTime.Now.AddMinutes(Convert.ToInt32(config["JwtToken:LifeTimeMinute"]!));
+        public async Task<bool> CreateAsync(UserModifyDto userModifyDto, string role)
+        {
+            ArgumentNullException.ThrowIfNull(userModifyDto, nameof(userModifyDto));
 
-        var token = new JwtSecurityToken(
-            claims: claims,
-            issuer: config["JwtToken:Issuer"]!,
-            audience: config["JwtToken:Audience"]!,
-            signingCredentials: signingCredentials,
-            expires: lifeTime);
+            var roleId = roleManager.Roles.SingleOrDefault(x => x.Name.ToLower() == role.ToLower())?.Id;
+            if (roleId == null)
+                throw new Exception(
+                    "'Role' parametresi sadece; 'Worker', 'Recruiter' ve 'Founder' değerlerini alabilir.");
 
-        var jwtSecurityTokenHandler = new JwtSecurityTokenHandler();
-        return jwtSecurityTokenHandler.WriteToken(token);
+            var mappedUser = mapper.Map<AppUser>(userModifyDto);
+            mappedUser.RoleId = roleId.Value;
+            mappedUser.PasswordHash = encryptionHelper.HashPassword(mappedUser, userModifyDto.Password);
+
+            return await repository.CreateAsync(mappedUser);
+        }
+
+        public async Task<bool> UpdateAsync(Guid userId, UserModifyDto userModifyDto)
+        {
+            var user = await repository.FindByIdAsync(userId);
+            ArgumentNullException.ThrowIfNull(user, nameof(user));
+            ArgumentNullException.ThrowIfNull(userModifyDto, nameof(userModifyDto));
+
+            var mappedUser = mapper.Map(userModifyDto, user);
+            // Todo: set UpdatedDate
+            mappedUser.PasswordHash = encryptionHelper.HashPassword(mappedUser, userModifyDto.Password);
+
+            return await repository.UpdateAsync(mappedUser);
+        }
+
+        public async Task<bool> RemoveByIdAsync(Guid id)
+        {
+            return await repository.RemoveByIdAsync(id);
+        }
+
+        public async Task<string> GetTokenAsync(string userNameOrEmail, string password)
+        {
+            var user = await repository.FindByUserNameOrEmailAsync(userNameOrEmail);
+            ArgumentNullException.ThrowIfNull(user, nameof(user));
+
+            var result = await signInManager.CheckPasswordSignInAsync(user, password, false);
+            if (!result.Succeeded)
+                throw new Exception(
+                    "Girilen kullanıcı adı veya email ve parola bilgileri ile eşleşen bir kullanıcı bulunamadı.");
+
+            return CreateJwtToken(user);
+        }
+
+        private string CreateJwtToken(AppUser user)
+        {
+            var claims = new List<Claim>
+            {
+                new(ClaimTypes.NameIdentifier, user.Id.ToString()),
+                new(ClaimTypes.Name, user.UserName),
+                new(ClaimTypes.Role, user.Role.Name)
+            };
+
+            var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(config["JwtToken:SecurityKey"]!));
+            var signingCredentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
+
+            var lifeTime = DateTime.Now.AddMinutes(Convert.ToInt32(config["JwtToken:LifeTimeMinute"]!));
+
+            var token = new JwtSecurityToken(
+                claims: claims,
+                issuer: config["JwtToken:Issuer"]!,
+                audience: config["JwtToken:Audience"]!,
+                signingCredentials: signingCredentials,
+                expires: lifeTime);
+
+            var jwtSecurityTokenHandler = new JwtSecurityTokenHandler();
+            return jwtSecurityTokenHandler.WriteToken(token);
+        }
     }
 }

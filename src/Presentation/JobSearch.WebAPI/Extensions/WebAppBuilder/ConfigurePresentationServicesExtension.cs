@@ -1,11 +1,12 @@
 ﻿using JobSearch.WebAPI.Helpers.Identity;
 
-namespace JobSearch.WebAPI.Extensions.WebAppBuilder;
-
-public static class ConfigurePresentationServicesExtension
+namespace JobSearch.WebAPI.Extensions.WebAppBuilder
 {
-    public static void AddPresentationServices(this IServiceCollection services)
+    public static class ConfigurePresentationServicesExtension
     {
-        services.AddScoped<UserHelper>();
+        public static void AddPresentationServices(this IServiceCollection services)
+        {
+            services.AddScoped<UserHelper>();
+        }
     }
 }

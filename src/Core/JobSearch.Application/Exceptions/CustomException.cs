@@ -1,16 +1,17 @@
-﻿namespace JobSearch.Application.Exceptions;
-
-public class CustomException : Exception
+﻿namespace JobSearch.Application.Exceptions
 {
-    public CustomException() : base("Beklenmeyen bir hata oluştu!")
+    public class CustomException : Exception
     {
-    }
+        public CustomException() : base("Beklenmeyen bir hata oluştu!")
+        {
+        }
 
-    public CustomException(string? message) : base(message)
-    {
-    }
+        public CustomException(string? message) : base(message)
+        {
+        }
 
-    public CustomException(string? message, Exception? innerException) : base(message, innerException)
-    {
+        public CustomException(string? message, Exception? innerException) : base(message, innerException)
+        {
+        }
     }
 }

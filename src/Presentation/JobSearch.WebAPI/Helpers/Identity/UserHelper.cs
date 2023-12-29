@@ -2,19 +2,20 @@
 using JobSearch.Application.Contracts.Infrastructure.Services;
 using JobSearch.Domain.Entities.Identity;
 
-namespace JobSearch.WebAPI.Helpers.Identity;
-
-public class UserHelper(IHttpContextAccessor httpContextAccessor, IUserService userService)
+namespace JobSearch.WebAPI.Helpers.Identity
 {
-    public AppUser ResolveUserInToken()
+    public class UserHelper(IHttpContextAccessor httpContextAccessor, IUserService userService)
     {
-        if (!Guid.TryParse(httpContextAccessor.HttpContext?.User.FindFirst(ClaimTypes.NameIdentifier)?.Value,
-                out var userId))
-            throw new Exception("Token'dan User'in Id bilgisi çözümlenirken bir hata oluştu.");
+        public AppUser ResolveUserInToken()
+        {
+            if (!Guid.TryParse(httpContextAccessor.HttpContext?.User.FindFirst(ClaimTypes.NameIdentifier)?.Value,
+                    out var userId))
+                throw new Exception("Token'dan User'in Id bilgisi çözümlenirken bir hata oluştu.");
 
-        var user = userService.FindByIdAsync(userId).Result;
-        ArgumentNullException.ThrowIfNull(user, nameof(user));
+            var user = userService.FindByIdAsync(userId).Result;
+            ArgumentNullException.ThrowIfNull(user, nameof(user));
 
-        return user;
+            return user;
+        }
     }
 }

@@ -2,12 +2,13 @@
 using JobSearch.Application.DTOs.JobPost;
 using JobSearch.Domain.Entities.JobPost;
 
-namespace JobSearch.Application.Mappings.JobPost;
-
-public class JobMapping : Profile
+namespace JobSearch.Application.Mappings.JobPost
 {
-    public JobMapping()
+    public class JobMapping : Profile
     {
-        CreateMap<Job, JobCreateDto>().ReverseMap();
+        public JobMapping()
+        {
+            CreateMap<Job, JobCreateDto>().ReverseMap();
+        }
     }
 }

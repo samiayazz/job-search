@@ -1,38 +1,39 @@
 ﻿using JobSearch.WebAPI.Middlewares.Exception;
 
-namespace JobSearch.WebAPI.Extensions.WebAppBuilder;
-
-public static class ConfigureExceptionHandlerServicesExtension
+namespace JobSearch.WebAPI.Extensions.WebAppBuilder
 {
-    public static void UseGlobalExceptionHandler(this IApplicationBuilder app)
+    public static class ConfigureExceptionHandlerServicesExtension
     {
-        #region with appBuilder
-
-        /*app.UseExceptionHandler(builder =>
+        public static void UseGlobalExceptionHandler(this IApplicationBuilder app)
         {
-            builder.Run(async context =>
+            #region with appBuilder
+
+            /*app.UseExceptionHandler(builder =>
             {
-                context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
-                context.Response.ContentType = MediaTypeNames.Application.Json;
-
-                var contextFeature = context.Features.Get<IExceptionHandlerFeature>();
-                if (contextFeature != null)
+                builder.Run(async context =>
                 {
-                    //Logging
+                    context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
+                    context.Response.ContentType = MediaTypeNames.Application.Json;
 
-                    context.Response.WriteAsJsonAsync(new GeneralResponse<object>
+                    var contextFeature = context.Features.Get<IExceptionHandlerFeature>();
+                    if (contextFeature != null)
                     {
-                        Data = null,
-                        StatusCode = context.Response.StatusCode,
-                        Message = $"An error has occurred! Details: '{contextFeature.Error.Message}'"
-                    });
-                }
-            });
-        });*/
+                        //Logging
 
-        #endregion
+                        context.Response.WriteAsJsonAsync(new GeneralResponse<object>
+                        {
+                            Data = null,
+                            StatusCode = context.Response.StatusCode,
+                            Message = $"An error has occurred! Details: '{contextFeature.Error.Message}'"
+                        });
+                    }
+                });
+            });*/
 
-        // Source: https://hakanguzel.medium.com/asp-net-coreda-global-exception-handling-ec11f90b85ce
-        app.UseMiddleware<GlobalExceptionHandlerMiddleware>();
+            #endregion
+
+            // Source: https://hakanguzel.medium.com/asp-net-coreda-global-exception-handling-ec11f90b85ce
+            app.UseMiddleware<GlobalExceptionHandlerMiddleware>();
+        }
     }
 }

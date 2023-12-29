@@ -7,14 +7,13 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\..\Core\JobSearch.Application\JobSearch.Application.csproj" />
-      <ProjectReference Include="..\..\Core\JobSearch.Domain\JobSearch.Domain.csproj" />
-      <ProjectReference Include="..\JobSearch.Persistence\JobSearch.Persistence.csproj" />
+        <ProjectReference Include="..\..\Core\JobSearch.Application\JobSearch.Application.csproj"/>
+        <ProjectReference Include="..\..\Core\JobSearch.Domain\JobSearch.Domain.csproj"/>
     </ItemGroup>
 
     <ItemGroup>
-      <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="8.0.0" />
-      <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="8.0.0" />
+        <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="8.0.0"/>
+        <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="8.0.0"/>
     </ItemGroup>
 
 </Project>

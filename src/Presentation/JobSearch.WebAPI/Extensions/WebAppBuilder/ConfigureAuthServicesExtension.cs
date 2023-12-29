@@ -2,40 +2,41 @@
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 
-namespace JobSearch.WebAPI.Extensions.WebAppBuilder;
-
-public static class ConfigureAuthServicesExtension
+namespace JobSearch.WebAPI.Extensions.WebAppBuilder
 {
-    public static void AddAuthServices(this IServiceCollection services, IConfiguration config)
+    public static class ConfigureAuthServicesExtension
     {
-        services.AddAuthentication(options =>
+        public static void AddAuthServices(this IServiceCollection services, IConfiguration config)
         {
-            options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-            options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-            options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
-        }).AddJwtBearer(options =>
-        {
-            options.TokenValidationParameters = new TokenValidationParameters
+            services.AddAuthentication(options =>
             {
-                ValidateIssuer = true,
-                ValidIssuer = config["JwtToken:Issuer"],
+                options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+                options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
+            }).AddJwtBearer(options =>
+            {
+                options.TokenValidationParameters = new TokenValidationParameters
+                {
+                    ValidateIssuer = true,
+                    ValidIssuer = config["JwtToken:Issuer"],
 
-                ValidateAudience = true,
-                ValidAudience = config["JwtToken:Audience"],
+                    ValidateAudience = true,
+                    ValidAudience = config["JwtToken:Audience"],
 
-                ValidateIssuerSigningKey = true,
-                IssuerSigningKey =
-                    new SymmetricSecurityKey(Encoding.UTF8.GetBytes(config["JwtToken:SecurityKey"])),
+                    ValidateIssuerSigningKey = true,
+                    IssuerSigningKey =
+                        new SymmetricSecurityKey(Encoding.UTF8.GetBytes(config["JwtToken:SecurityKey"])),
 
-                ValidateLifetime = true
-            };
-        });
-        services.AddAuthorization();
-    }
+                    ValidateLifetime = true
+                };
+            });
+            services.AddAuthorization();
+        }
 
-    public static void UseAuthServices(this IApplicationBuilder app)
-    {
-        app.UseAuthentication();
-        app.UseAuthorization();
+        public static void UseAuthServices(this IApplicationBuilder app)
+        {
+            app.UseAuthentication();
+            app.UseAuthorization();
+        }
     }
 }

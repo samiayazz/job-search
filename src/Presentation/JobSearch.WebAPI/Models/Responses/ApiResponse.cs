@@ -1,8 +1,9 @@
-﻿namespace JobSearch.WebAPI.Models.Responses;
-
-public class ApiResponse<T>
+﻿namespace JobSearch.WebAPI.Models.Responses
 {
-    public T Data { get; set; } = default(T);
-    public bool Success { get; set; } = true;
-    public string Message { get; set; } = "The proccess successful!";
+    public class ApiResponse<T>
+    {
+        public T Data { get; set; } = default;
+        public bool Success { get; set; } = true;
+        public string Message { get; set; } = "The proccess successful!";
+    }
 }
