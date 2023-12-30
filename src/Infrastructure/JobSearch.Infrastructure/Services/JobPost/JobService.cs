@@ -19,7 +19,7 @@ namespace JobSearch.Infrastructure.Services.JobPost
             {
                 #region keywordPredicate
 
-                var keywordToSearch = keyword?.Trim()?.ToLower();
+                var keywordToSearch = keyword.Trim().ToLower();
                 ArgumentException.ThrowIfNullOrEmpty(keywordToSearch, nameof(keywordToSearch));
 
                 if (job.Title.Trim().ToLower().Contains(keywordToSearch))
@@ -31,11 +31,11 @@ namespace JobSearch.Infrastructure.Services.JobPost
                 if (job.Criteria.Trim().ToLower().Contains(keywordToSearch))
                     return true;
 
-                var company = job.Company?.Name?.Trim()?.ToLower();
+                var company = job.Company.Name.Trim().ToLower();
                 if (!string.IsNullOrEmpty(company) && company.Contains(keywordToSearch))
                     return true;
 
-                var position = job.Position?.Trim()?.ToLower();
+                var position = job.Position.Trim().ToLower();
                 if (!string.IsNullOrEmpty(position) && position.Contains(keywordToSearch))
                     return true;
 
@@ -43,26 +43,26 @@ namespace JobSearch.Infrastructure.Services.JobPost
 
                 #region locationPredicate
 
-                var locationToSearch = location?.Trim()?.ToLower();
+                var locationToSearch = location.Trim().ToLower();
                 ArgumentException.ThrowIfNullOrEmpty(locationToSearch, nameof(locationToSearch));
 
-                var address = job.Company?.Address;
+                var address = job.Company.Address;
                 if (address == null)
                     return false;
 
-                var province = address.Province?.Name?.Trim()?.ToLower();
+                var province = address.Province.Name.Trim().ToLower();
                 if (!string.IsNullOrEmpty(province) && province.Contains(locationToSearch))
                     return true;
 
-                var district = address.District?.Trim()?.ToLower();
+                var district = address.District.Trim().ToLower();
                 if (!string.IsNullOrEmpty(district) && district.Contains(locationToSearch))
                     return true;
 
-                var neighborhood = address.Neighborhood?.Trim()?.ToLower();
+                var neighborhood = address.Neighborhood?.Trim().ToLower();
                 if (!string.IsNullOrEmpty(neighborhood) && neighborhood.Contains(locationToSearch))
                     return true;
 
-                var fullAddress = address.FullAddress?.Trim()?.ToLower();
+                var fullAddress = address.FullAddress?.Trim().ToLower();
                 if (!string.IsNullOrEmpty(fullAddress) && fullAddress.Contains(locationToSearch))
                     return true;
 
@@ -70,7 +70,7 @@ namespace JobSearch.Infrastructure.Services.JobPost
 
                 #region departmentPredicate
 
-                var departmentToSearch = department?.Trim()?.ToLower();
+                var departmentToSearch = department?.Trim().ToLower();
                 if (!string.IsNullOrEmpty(departmentToSearch) &&
                     job.Department.Name.Trim().ToLower().Contains(departmentToSearch))
                     return true;
@@ -79,7 +79,7 @@ namespace JobSearch.Infrastructure.Services.JobPost
 
                 #region workTypePredicate
 
-                var workTypeToSearch = workType?.Trim()?.ToLower();
+                var workTypeToSearch = workType?.Trim().ToLower();
                 if (!string.IsNullOrEmpty(workTypeToSearch) &&
                     job.WorkType.Name.Trim().ToLower().Contains(workTypeToSearch))
                     return true;
@@ -88,7 +88,7 @@ namespace JobSearch.Infrastructure.Services.JobPost
 
                 #region workModelPredicate
 
-                var workModelToSearch = workModel?.Trim()?.ToLower();
+                var workModelToSearch = workModel?.Trim().ToLower();
                 if (!string.IsNullOrEmpty(workModelToSearch) &&
                     job.WorkModel.Name.Trim().ToLower().Contains(workModelToSearch))
                     return true;
@@ -101,7 +101,7 @@ namespace JobSearch.Infrastructure.Services.JobPost
             return await repository.GetAllAsync(job => predicate(job));
         }
 
-        public async Task<bool> CreateAsync(Guid userId, JobCreateDto jobCreateDto)
+        public async Task<bool> CreateAsync(Guid userId, JobModifyDto jobModifyDto)
         {
             var user = await userRepository.FindByIdAsync(userId);
             ArgumentNullException.ThrowIfNull(user, nameof(user));
@@ -110,10 +110,44 @@ namespace JobSearch.Infrastructure.Services.JobPost
                 throw new Exception(
                     "Sadece 'Recruiter' veya 'Founder' rolündeki üyeler, yeni bir iş ilanı oluşturabilir.");
 
-            var mappedJob = mapper.Map<Job>(jobCreateDto);
+            var mappedJob = mapper.Map<Job>(jobModifyDto);
             mappedJob.CreatedById = userId;
 
             return await repository.CreateAsync(mappedJob);
+        }
+
+        public async Task<bool> UpdateAsync(Guid userId, Guid jobId, JobModifyDto jobModifyDto)
+        {
+            var user = await userRepository.FindByIdAsync(userId);
+            ArgumentNullException.ThrowIfNull(user, nameof(user));
+
+            var job = await repository.FindByIdAsync(jobId);
+            ArgumentNullException.ThrowIfNull(job, nameof(job));
+
+            if ((job.CreatedById == userId || job.Company.Id == user.Company?.Id) &&
+                user.Role.Name is not "Recruiter" and not "Founder")
+                throw new Exception(
+                    "Bir ilanı sadece, ilanın ait olduğu şirkette çalışan ve 'Recruiter' veya 'Founder' rolüne sahip olan üyeler düzenleyebilir.");
+
+            var mappedJob = mapper.Map(jobModifyDto, job);
+
+            return await repository.UpdateAsync(mappedJob);
+        }
+
+        public async Task<bool> RemoveAsync(Guid userId, Guid jobId)
+        {
+            var user = await userRepository.FindByIdAsync(userId);
+            ArgumentNullException.ThrowIfNull(user, nameof(user));
+
+            var job = await repository.FindByIdAsync(jobId);
+            ArgumentNullException.ThrowIfNull(job, nameof(job));
+
+            if ((job.CreatedById == userId || job.Company.Id == user.Company?.Id) &&
+                user.Role.Name is not "Recruiter" and not "Founder")
+                throw new Exception(
+                    "Bir ilanı sadece, ilanın ait olduğu şirkette çalışan ve 'Recruiter' veya 'Founder' rolüne sahip olan üyeler kaldırabilir.");
+
+            return await repository.RemoveAsync(job);
         }
     }
 }

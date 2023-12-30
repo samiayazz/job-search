@@ -8,7 +8,7 @@ namespace JobSearch.Application.Mappings.JobPost
     {
         public JobMapping()
         {
-            CreateMap<Job, JobCreateDto>().ReverseMap();
+            CreateMap<Job, JobModifyDto>().ReverseMap();
         }
     }
 }

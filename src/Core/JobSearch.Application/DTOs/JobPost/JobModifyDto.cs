@@ -1,6 +1,6 @@
 ﻿namespace JobSearch.Application.DTOs.JobPost
 {
-    public class JobCreateDto(
+    public class JobModifyDto(
         string title,
         string position,
         byte yearsOfExperience,

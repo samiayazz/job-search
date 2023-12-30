@@ -3,7 +3,7 @@ using JobSearch.Application.DTOs.JobPost;
 
 namespace JobSearch.Application.Validators.JobPost
 {
-    public class JobCreateValidator : AbstractValidator<JobCreateDto>
+    public class JobCreateValidator : AbstractValidator<JobModifyDto>
     {
         public JobCreateValidator()
         {
